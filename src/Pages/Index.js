@@ -1,0 +1,34 @@
+import React, { Fragment } from 'react'
+import { Footer } from './Componets/Footer'
+import { Banner } from './Componets/Index/Banner'
+import { Buscadorhome } from './Componets/Index/Buscadorhome'
+import Header from './Componets/Index/Header'
+import { Topsrestaurant } from './Componets/Index/Topsrestaurant'
+ 
+const Index = () => {
+    return (
+        <Fragment>
+            <div id="preloader">
+                <div className="sk-spinner sk-spinner-wave" id="status">
+                    <div className="sk-rect1"></div>
+                    <div className="sk-rect2"></div>
+                    <div className="sk-rect3"></div>
+                    <div className="sk-rect4"></div>
+                    <div className="sk-rect5"></div>
+                </div>
+            </div>
+
+            <Header />
+            <Buscadorhome />
+            <Topsrestaurant />
+            <Banner />
+            <Footer />
+
+            <div className="layer">
+            </div>{/* Mobile menu overlay mask */}
+        </Fragment>
+
+    )
+}
+
+export default Index

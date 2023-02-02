@@ -12,9 +12,9 @@
         <!-- Favicons-->
         <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="assets/img/apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="assets/img/apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="assets/img/apple-touch-icon-144x144-precomposed.png">
         
         <!-- GOOGLE WEB FONT -->
         <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Lato:wght@300;400;700;900&display=swap"
@@ -40,15 +40,22 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <!-- COMMON SCRIPTS-->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/common_scripts_min.js"></script>
+    <script src="assets/js/functions.js"></script>
+    <script src="assets/validate.js"></script>
+    
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="assets/js/ResizeSensor.min.js"></script>
+    <script src="assets/js/theia-sticky-sidebar.min.js"></script>
+    <script>
+      
+      jQuery('#sidebar').theiaStickySidebar({
+        additionalMarginTop: 80
+      });
+    </script>
   </body>
+
 </html>
