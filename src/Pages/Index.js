@@ -1,4 +1,3 @@
-import React, { Fragment } from 'react'
 import { Footer } from './Componets/Footer'
 import { Banner } from './Componets/Index/Banner'
 import { Buscadorhome } from './Componets/Index/Buscadorhome'

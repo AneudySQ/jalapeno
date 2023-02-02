@@ -1,4 +1,5 @@
 import React from 'react'
+import { MenuGeneral } from '../MenuGeneral'
 
 const Header = () => {
     return (
@@ -13,6 +14,9 @@ const Header = () => {
                             <img src="assets/img/logo_mobile.png" width="59" height="23" alt="" className="d-block d-sm-none" />
 
                         </div>
+                        <MenuGeneral />
+
+                        {/* Este es el menu original
                         <nav className="col-md-8 col-sm-8 col-8">
                             <a className="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
                             <div className="main-menu">
@@ -68,8 +72,10 @@ const Header = () => {
                                     <li><a href="#0" data-toggle="modal" data-target="#login_2">Login</a></li>
                                     <li><a href="#0">Purchase this template</a></li>
                                 </ul>
-                            </div>{/* End main-menu */}
+                            </div>
                         </nav>
+                         End main-menu */}
+
                     </div>{/* End row */}
                 </div>{/* End container */}
             </header>
