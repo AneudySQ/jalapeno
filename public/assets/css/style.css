@@ -800,11 +800,14 @@ a#filters_col_bt .icon_set_1_icon-65{
 	margin-bottom:30px;
 	line-height:1.3;
 	display:block;
+	width: 100%;
 }
 .strip_list.last{
 	margin-bottom:25px;
+	align-items: center;
+
 }
-a.strip_list:hover h3{
+button.strip_list:hover h3{
 	color:#ec008c;
 }
 .desc{
@@ -2000,13 +2003,13 @@ blockquote.styled {
 /* 4.  UPDATES */
 /*============================================================================================*/
 /*4.1 Strip list home*/
-a.strip_list{
+button.strip_list{
 	color:#555;
 	-webkit-transition: all 300ms ease-in-out; 
 	-moz-transition: all 300ms ease-in-out; 
 	-o-transition: all 300ms ease-in-out; 
 }
-a.strip_list:hover{
+button.strip_list:hover{
 	 transform: translate(0, -5px); 
 	 -webkit-transform: translate(0, -5px); 
 	 -ms-transform: translate(0, -5px); 

@@ -4,10 +4,10 @@ import { Banner } from './Componets/Index/Banner'
 import { Buscadorhome } from './Componets/Index/Buscadorhome'
 import Header from './Componets/Index/Header'
 import { Topsrestaurant } from './Componets/Index/Topsrestaurant'
- 
+
 const Index = () => {
     return (
-        <Fragment>
+        <>
             <div id="preloader">
                 <div className="sk-spinner sk-spinner-wave" id="status">
                     <div className="sk-rect1"></div>
@@ -26,7 +26,7 @@ const Index = () => {
 
             <div className="layer">
             </div>{/* Mobile menu overlay mask */}
-        </Fragment>
+        </>
 
     )
 }
