@@ -3,16 +3,12 @@ import Header from './Componets/Index/Header'
 import { Searchoverlay } from './Componets/Searchoverlay'
 import { Subheader } from './Componets/Subheader'
 
-const About = () => {
-    return (
-        <>
+export const Contacts = () => {
+  return (
+    <>
         <Header />
         <Subheader />
         <Searchoverlay />
-            
-
-        </>
-    )
+    </>
+  )
 }
-
-export default About

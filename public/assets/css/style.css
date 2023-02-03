@@ -1580,21 +1580,21 @@ select.form-control.form-white{
 	border-radius: 0px;
 	border:none;
 }
-.modal-popup a{
+.modal-popup button{
 	color:#fff;
 }
-.modal-popup a:hover{
+.modal-popup button:hover{
 	color:#fff;
 	text-decoration:underline;
 }
-.modal-popup a.close-link {
+.modal-popup button.close-link {
 	font-size: 22px;
 	position: absolute;
 	top: 20px;
 	right: 30px;
 	color: #fff;
 }
-.modal-popup a.close-link:hover {
+.modal-popup button.close-link:hover {
 	color: #333;
 	text-decoration:none;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MenuGeneral } from '../MenuGeneral'
+import { NavegadorLink } from '../NavegadorLink'
 import { ModalloginRegister } from '../ModalloginRegister'
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
             <header>
                 <div className="container-fluid">
                     <div className="row">
-                        <MenuGeneral />
+                        <NavegadorLink />
                     </div>{/* End row */}
                 </div>{/* End container */}
             </header>
