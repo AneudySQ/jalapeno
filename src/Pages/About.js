@@ -1,31 +1,15 @@
 import React from 'react'
+import { Footer } from './Componets/Footer'
+import Header from './Componets/Index/Header'
+import { Searchoverlay } from './Componets/Searchoverlay'
+import { Subheader } from './Componets/Subheader'
 
 const About = () => {
     return (
         <>
-            {/* SubHeader =============================================== */}
-            <section className="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
-                <div id="subheader">
-                    <div id="sub_content">
-                        <h1>About us</h1>
-                        <p>Qui debitis meliore ex, tollit debitis conclusionemque te eos.</p>
-                        <p></p>
-                    </div>{/* End sub_content */}
-                </div>{/* End subheader */}
-            </section>{/* End section */}
-            {/* End SubHeader ============================================ */}
-
-            <div id="position">
-                <div className="container">
-                    <ul>
-                        <li><a href="#0">Home</a></li>
-                        <li><a href="#0">Category</a></li>
-                        <li>Page active</li>
-                    </ul>
-                    <a href="#0" className="search-overlay-menu-btn"><i className="icon-search-6"></i> Search</a>
-                </div>
-            </div>{/* Position */}
-
+        <Header />
+        <Subheader />
+        <Searchoverlay />
             {/* Content ================================================== */}
             <div className="container margin_60_35">
                 <div className="row justify-content-between">
@@ -142,8 +126,10 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            {/* End container-fluid  */}
-            {/* End Content =============================================== */}
+
+            
+            <Footer />
+            
 
         </>
     )

@@ -7,7 +7,7 @@ export const Popularcart = () => {
                 <div className="ribbon_1">Popular</div>
                 <div className="desc">
                     <div className="thumb_strip">
-                        <img src="img/thumb_restaurant.jpg" alt=""/>
+                        <img src="assets/img/thumb_restaurant.jpg" alt=""/>
                     </div>
                     <div className="rating">
                         <i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star voted"></i><i className="icon_star"></i>
