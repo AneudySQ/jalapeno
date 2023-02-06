@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavegadorLink } from '../NavegadorLink'
-import { ModalloginRegister } from '../ModalloginRegister'
+import { Modalloginregister } from '../Modalloginregister'
 
 const Header = () => {
     return (
@@ -14,7 +14,7 @@ const Header = () => {
                 </div>{/* End container */}
             </header>
             {/* End Header =============================================== */}
-            <ModalloginRegister />
+            <Modalloginregister />
         </>
     )
 }
