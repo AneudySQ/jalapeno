@@ -2,7 +2,7 @@ import React from 'react'
 import { Loginmodal } from './Loginmodal'
 import { Registermodal } from './Registermodal'
 
-export const Modalloginregister = () => {
+export const ModalloginRegister = () => {
     return (
         <>
             {/* Login modal */}
