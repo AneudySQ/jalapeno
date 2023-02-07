@@ -7,7 +7,10 @@ import { Profile } from './Pages/Componets/Dashboard/Profile';
 import { ChooseUserNameView } from './Pages/Componets/Dashboard/ChooseUserNameView';
 import { PublicProfileView  } from './Pages/Componets/Dashboard/PublicProfileView ';
 import SignoutView from './Pages/Componets/Dashboard/SignoutView';
+import LoginView from './Pages/Componets/Dashboard/LoginView';
 import Signout from './Pages/Componets/Dashboard/Signout';
+
+
 
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path='Admin' element={<Admin />} />
           <Route path="About" element={<About />} />
+          <Route path='LoginView' element={<LoginView />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="ChooseUserNameView" element={<ChooseUserNameView />} />
           <Route path="PublicProfileView " element={<PublicProfileView  />} />
