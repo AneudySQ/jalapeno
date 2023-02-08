@@ -4,10 +4,10 @@ import { Contacts } from './Pages/Contacts';
 import Index from './Pages/Index';
 import Admin from './Pages/Admin';
 import { Profile } from './Pages/Componets/Dashboard/Profile';
-import { ChooseUserNameView } from './Pages/Componets/Dashboard/ChooseUserNameView';
+import  ChooseUserNameView  from './Pages/Componets/Dashboard/ChooseUserNameView';
 import { PublicProfileView  } from './Pages/Componets/Dashboard/PublicProfileView ';
 import SignoutView from './Pages/Componets/Dashboard/SignoutView';
-import LoginView from './Pages/Componets/Dashboard/LoginView';
+import Login from './Pages/Componets/Dashboard/Login';
 import Signout from './Pages/Componets/Dashboard/Signout';
 import Dashboard from './Pages/Componets/Dashboard/Dashboard';
 
@@ -23,7 +23,7 @@ function App() {
           <Route path='Admin' element={<Admin />} />
           <Route path="About" element={<About />} />
           <Route path="Dashboard" element={<Dashboard />} />
-          <Route path='LoginView' element={<LoginView />} />
+          <Route path='Login' element={<Login />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="ChooseUserNameView" element={<ChooseUserNameView />} />
           <Route path="PublicProfilView " element={<PublicProfileView  />} />
