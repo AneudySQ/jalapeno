@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { auth, userExists } from '../../../Firebase/Firebase';
-import { Navigate } from "react-router-dom";
 
+import {  useNavigate } from "react-router-dom";
 
 export default function LoginView() {
-
+    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState(null);
 
     /*
@@ -31,11 +31,11 @@ export default function LoginView() {
             const isRegistered = await userExists(user.uid);
             if (isRegistered) {
                 ///TODO:Redirigir a Dashboard
-                Navigate("/dashboard")
+                navigate("/Profile")
                 setCurrentState(2);
             } else {
                 ///TODO:Redirigir a Dashboard
-                Navigate("/choose-username")
+                navigate("/Dashboard")
 
                 setCurrentState(3);
             }

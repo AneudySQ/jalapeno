@@ -9,6 +9,7 @@ import { PublicProfileView  } from './Pages/Componets/Dashboard/PublicProfileVie
 import SignoutView from './Pages/Componets/Dashboard/SignoutView';
 import LoginView from './Pages/Componets/Dashboard/LoginView';
 import Signout from './Pages/Componets/Dashboard/Signout';
+import Dashboard from './Pages/Componets/Dashboard/Dashboard';
 
 
 
@@ -21,10 +22,11 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path='Admin' element={<Admin />} />
           <Route path="About" element={<About />} />
+          <Route path="Dashboard" element={<Dashboard />} />
           <Route path='LoginView' element={<LoginView />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="ChooseUserNameView" element={<ChooseUserNameView />} />
-          <Route path="PublicProfileView " element={<PublicProfileView  />} />
+          <Route path="PublicProfilView " element={<PublicProfileView  />} />
           <Route path='SignoutView' element={<SignoutView />} />
           <Route path='Signout' element={<Signout />} />
           <Route path='Contacts ' element={<Contacts  />} />
