@@ -1,8 +1,8 @@
-import { Footer } from './Componets/Footer'
-import { Banner } from './Componets/Index/Banner'
-import { Buscadorhome } from './Componets/Index/Buscadorhome'
-import Header from './Componets/Index/Header'
-import { Topsrestaurant } from './Componets/Index/Topsrestaurant'
+import { Footer } from '../Componets/Footer'
+import { Banner } from '../Componets/Banner'
+import { Buscadorhome } from '../Componets/Buscadorhome'
+import Header from '../Componets/Header'
+import { Topsrestaurant } from '../Componets/Topsrestaurant'
 
 const Index = () => {
     return (

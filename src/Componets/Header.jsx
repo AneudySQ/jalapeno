@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavegadorLink } from '../NavegadorLink'
-import { ModalloginRegister } from '../ModalloginRegister'
+import { NavegadorLink } from './NavegadorLink'
+import { ModalloginRegister } from './ModalloginRegister'
 
 const Header = () => {
     return (

@@ -1,15 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './Pages/About';
-import { Contacts } from './Pages/Contacts';
-import Index from './Pages/Index';
-import Admin from './Pages/Admin';
-import { Profile } from './Pages/Componets/Dashboard/Profile';
-import  ChooseUserNameView  from './Pages/Componets/Dashboard/ChooseUserNameView';
-import { PublicProfileView  } from './Pages/Componets/Dashboard/PublicProfileView ';
-import SignoutView from './Pages/Componets/Dashboard/SignoutView';
-import Login from './Pages/Componets/Dashboard/Login';
-import Signout from './Pages/Componets/Dashboard/Signout';
-import Dashboard from './Pages/Componets/Dashboard/Dashboard';
+import About from './Routes/About';
+import { Contacts } from './Routes/Contacts';
+import Index from './Routes/Index';
+import Admin from './Routes/Admin';
 
 
 
@@ -20,15 +13,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/" element={<About />} />
           <Route path='Admin' element={<Admin />} />
           <Route path="About" element={<About />} />
-          <Route path="Dashboard" element={<Dashboard />} />
-          <Route path='Login' element={<Login />} />
-          <Route path="Profile" element={<Profile />} />
-          <Route path="ChooseUserNameView" element={<ChooseUserNameView />} />
-          <Route path="PublicProfilView " element={<PublicProfileView  />} />
-          <Route path='SignoutView' element={<SignoutView />} />
-          <Route path='Signout' element={<Signout />} />
           <Route path='Contacts ' element={<Contacts  />} />
           <Route path="*" element={<Index />} />
         </Routes>

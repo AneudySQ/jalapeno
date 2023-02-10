@@ -5,6 +5,7 @@ import { Registermodal } from './Registermodal'
 export const ModalloginRegister = () => {
     return (
         <>
+            <div class="layer"></div>
             {/* Login modal */}
             <Loginmodal />
             {/* End modal */}

@@ -13,8 +13,8 @@ export const NavegadorLink = () => {
             </div>
 
             <nav className="col-md-8 col-sm-8 col-8">
-                <button className="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></button>
-                <div className="main-menu">
+            <a className="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                <div className="main-menu ">
                     <div id="header_menu">
                         <img src="assets/img/logo.png" width="190" height="23" alt="" />
                     </div>
@@ -30,6 +30,7 @@ export const NavegadorLink = () => {
                 </div>{/* End main-menu */}
             </nav>
 
+            <div class="layer "></div>
         </>
     )
 }

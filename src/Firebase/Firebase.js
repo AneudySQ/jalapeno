@@ -80,3 +80,9 @@ export async function updateUser(user) {
     } catch (error) {}
     
 }
+
+
+//Iniciamos la aplicacion y la guardamos en firebaseApp//
+const firebase = initializeApp(firebaseConfig);
+//Esportamos para poder usarla en cualquier lugar de la app//
+export default firebase;
