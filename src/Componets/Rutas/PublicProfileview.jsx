@@ -3,7 +3,7 @@ import React from 'react'
 const PublicProfileview = () => {
   return (
     <div>
-          PublicProfileview
+      PublicProfileview
     </div>
   )
 }

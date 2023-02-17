@@ -4,7 +4,7 @@ import { auth } from "../../Firebase/Firebase";
 export default function LoginView() {
   async function handleOnclick() {
     const googleProvider = new GoogleAuthProvider();
-    await signInWithGoogle(GoogleAuthProvider);
+    await signInWithGoogle(googleProvider);
 
   }
 
