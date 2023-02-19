@@ -1,6 +1,9 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth } from "../../Firebase/Firebase";
+import { auth, userExists } from "../../Firebase/Firebase";
 import { useEffect, useState } from "react";
+
+
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -8,6 +11,8 @@ import { useEffect, useState } from "react";
 
 
 export default function LoginView() {
+
+  const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(null);
   /*
@@ -21,21 +26,31 @@ export default function LoginView() {
 
   useEffect(() => {
     setCurrentState(1);
-    onAuthStateChanged(auth, handleUserStateChanged);
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const isRegistered = await userExists(user.uid);
+        if (isRegistered) {
+          //TODO: Redirigir a Dasboard
+          navigate("/DasboardView");
+          setCurrentState(2);
+        } else {
+          //TODO: Redirigir a choose Username
+          navigate("/ChoouseUsernane");
+          setCurrentState(3);
+        }
+      } else {
+        setCurrentState(4);
+        console.log("No hay nadie autentificado...");
+      }
+    });
+  }, [navigate]);
 
-  }, []);
-
-  function handleUserStateChanged(user) {
-    if (user) {
-      setCurrentState(3)
-      console.log(user.displayName);
-    } else {
-      setCurrentState(4)
-      console.log('No hay nadie autenticado');
-    }
-  }
 
   /*--------------------- */
+
+  if (state === 2) {
+    return <div>Estas autenticado y  registrado...</div>
+  }
 
   if (state === 3) {
     return <div>Estas autenticado pero no registrado...</div>
@@ -66,7 +81,8 @@ export default function LoginView() {
   }
 
 
-return <div>Loaging...</div>
+  return <div>Loaging...</div>
 
 }
+
 

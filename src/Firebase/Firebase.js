@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app"; 
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 import {
@@ -34,12 +34,16 @@ const firebaseConfig = {
 };
 
 
-export const app = initializeApp(firebaseConfig); 
+export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export  async function userExists(){
-    
+export async function userExists(uid) {
+    const docRef = doc(db, "users", uid);
+    const res = await getDoc(docRef);
+    console.log(res);
+    return res.exists();
+
 }
