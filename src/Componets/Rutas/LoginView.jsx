@@ -27,6 +27,7 @@ export default function LoginView() {
   3:login pero sin registo
   4:no hay nadie Logueado
   5:ya existe el usuario
+  6:Nuevo username, click para continuar
   */
   const [state, setCurrentState] = useState(0);
 
@@ -56,7 +57,7 @@ export default function LoginView() {
 
   }
 
-  function handleonUserNotloggedIn(user) {
+  function handleonUserNotLoggedIn() {
     setCurrentState(4);
   }
 
@@ -78,11 +79,19 @@ export default function LoginView() {
     );
   }
 
+  if (state === 5) {
+    return (
+      <div>
+        <button onClick={handleOnclick}>Login with Google</button>
+      </div>
+    );
+  }
+
 
   return (<AutProvider
     onUserLoggedIn={handleUserLoggedIn}
     onUserNotRegistered={handleonUserNotRegistered}
-    onUserNotloggedIn={handleonUserNotloggedIn}
+    onUserNotloggedIn={handleonUserNotLoggedIn}
   >
     <div>Loading...</div>
   </AutProvider>

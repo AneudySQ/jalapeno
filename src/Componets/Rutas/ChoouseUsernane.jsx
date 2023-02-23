@@ -1,7 +1,7 @@
 import AutProvider from "./AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { existUsername } from "../../Firebase/Firebase";
+import { existsUsername, updateUser } from "../../Firebase/Firebase";
 
 
 export default function ChoouseUsernane() {
@@ -29,22 +29,28 @@ export default function ChoouseUsernane() {
   }
 
   async function handleContinue() {
-    if (username != "") {
-      const exists = await existUsername(username);
+    if (username !== "") {
+      const exists = await existsUsername(username);
       if (exists) {
         setState(5);
       } else {
-          const tmp = {...currentUser};
-          tmp.processComplete = true;
+        const tmp = { ...currentUser };
+        tmp.username = username;
+        tmp.processCompleted = true;
+        await updateUser(tmp);
+        setState(5);
+
       }
     }
   }
 
-  if (state === 3) {
+  if (state === 3 || state === 5) {
     return (
       <div>
         <h1>Bienvenido {currentUser.displayName}</h1>
         <p>Favor elige un nombre de ususrio</p>
+        {state === 5 ? <p> el nombre de usuario ya existe, escoge otro</p> : ""}
+
         <div>
           <input type='text' onChange={handleInputUsername} />
         </div>
