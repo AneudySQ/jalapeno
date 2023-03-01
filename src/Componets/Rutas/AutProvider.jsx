@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth, userExists } from "../../Firebase/Firebase";
+import { auth, getUserInfo, registerNewUser, userExists } from "../../Firebase/Firebase";
 import { useEffect, useState } from "react";
 
 
@@ -12,14 +12,27 @@ export default function AutProvider({
     onUserNotRegistered
 }) {
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
+                debugger;
                 const isRegistered = await userExists(user.uid);
                 if (isRegistered) {
-                    onUserLoggedIn(user);
+                    const userInfo = await getUserInfo(user.uid);
+                    if (userInfo.processCompleted) {
+                        onUserLoggedIn(userInfo);
+                    } else {
+                        onUserNotRegistered(userInfo);
+                    }
                 } else {
+                    await registerNewUser({
+                        uid: user.uid,
+                        displayName: user.displayName,
+                        profilePicture: '',
+                        username: '',
+                        processCompleted: false,
+                    });
                     onUserNotRegistered(user);
                 }
             } else {

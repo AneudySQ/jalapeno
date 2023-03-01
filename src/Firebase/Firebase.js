@@ -7,6 +7,7 @@ import {
     uploadBytes,
     getDownloadURL,
     getBytes,
+
 } from "firebase/storage";
 
 
@@ -64,7 +65,7 @@ export async function existsUsername(username) {
 
 export async function registerNewUser(user) {
     try {
-        const collectionRef = collection(db, 'users');
+        const collectionRef = collection(db, "users");
         const docRef = doc(collectionRef, user.uid);
         await setDoc(docRef, user);
     } catch (error) { }
@@ -80,7 +81,7 @@ export async function updateUser(user) {
 
 export async function getUserInfo(uid) {
     try {
-        const docRef = doc(db, 'users, uid');
+        const docRef = doc(db, 'users', uid);
         const document = await getDoc(docRef);
         return document.data();
     } catch (error) { }

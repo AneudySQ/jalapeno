@@ -29,7 +29,7 @@ export default function ChoouseUsernane() {
   }
 
   async function handleContinue() {
-    if (username !== "") {
+    if (username !== '') {
       const exists = await existsUsername(username);
       if (exists) {
         setState(5);
@@ -38,7 +38,7 @@ export default function ChoouseUsernane() {
         tmp.username = username;
         tmp.processCompleted = true;
         await updateUser(tmp);
-        setState(5);
+        setState(6);
 
       }
     }
@@ -54,6 +54,7 @@ export default function ChoouseUsernane() {
         <div>
           <input type='text' onChange={handleInputUsername} />
         </div>
+
         <div>
           <button onClick={handleContinue}>Continue</button>
         </div>

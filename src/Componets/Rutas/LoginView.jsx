@@ -30,6 +30,7 @@ export default function LoginView() {
   6:Nuevo username, click para continuar
   */
   const [state, setCurrentState] = useState(0);
+  const [currentUser, setCurrentUser] = useState({});
 
 
 
@@ -53,7 +54,8 @@ export default function LoginView() {
   }
 
   function handleonUserNotRegistered(user) {
-    navigate('/ChoouseUsernane');
+    setCurrentUser(user);
+    setCurrentState(3);
 
   }
 
