@@ -37,47 +37,63 @@ const firebaseConfig = {
 
 
 export const app = initializeApp(firebaseConfig);
-
 export const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
 export async function userExists(uid) {
-    const docRef = doc(db, "users", uid);
+    const docRef = doc(db, 'users', uid);
     const res = await getDoc(docRef);
     console.log(res);
     return res.exists();
 }
+/*
+export async function existsUsername(username) {
+        const users = [];
+        const docsRef = collection(db, 'users');
+        const q = query(docsRef, where('username', ' == ', username));
+
+        const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+            users.push(doc.data());
+        });
+        return users.length > 0 ? users[0].uid : null;
+}
+*/
 
 export async function existsUsername(username) {
-    const users = [];
-    const docsRef = collection(db, 'users');
-    const q = query(docsRef, where('username', ' == ', username));
+  const users = [];
+  const q = query(collection(db, "users"), where("username", "==", username));
 
-    const querySnapshot = await getDocs(q);
+  const querySnapshot = await getDocs(q);
 
-    querySnapshot.forEach(doc => {
-        users.push(doc.data());
-    });
-
-    return users.length > 0 ? users[0].uid : null;
+  querySnapshot.forEach((doc) => {
+    console.log(doc.id, " => ", doc.data());
+    users.push(doc.data());
+  });
+  return users.length > 0 ? users[0].uid : null;
 }
 
 export async function registerNewUser(user) {
     try {
-        const collectionRef = collection(db, "users");
-        const docRef = doc(collectionRef, user.uid);
-        await setDoc(docRef, user);
-    } catch (error) { }
-}
+        const usersRef = collection(db, "users");
+        await setDoc(doc(usersRef, user.uid), user);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+    }
 
 export async function updateUser(user) {
+    console.log(user);
     try {
-        const collectionRef = collection(db, 'users');
-        const docRef = doc(collectionRef, user.uid);
-        await setDoc(docRef, user);
-    } catch (error) { }
-}
+        const usersRef = collection(db, "users");
+        await setDoc(doc(usersRef, user.uid), user);
+    } catch (e) {
+        console.error("Error adding document: ", e);
+    }
+    }
+
 
 export async function getUserInfo(uid) {
     try {

@@ -16,7 +16,7 @@ export default function AutProvider({
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
-                debugger;
+                //debugger;
                 const isRegistered = await userExists(user.uid);
                 if (isRegistered) {
                     const userInfo = await getUserInfo(user.uid);

@@ -29,7 +29,10 @@ export default function ChoouseUsernane() {
   }
 
   async function handleContinue() {
-    if (username !== '') {
+  
+
+    if (username !== "") {
+      debugger
       const exists = await existsUsername(username);
       if (exists) {
         setState(5);
@@ -44,7 +47,7 @@ export default function ChoouseUsernane() {
     }
   }
 
-  if (state === 3 || state === 5) {
+  if (state === 3 || state === 5 ) {
     return (
       <div>
         <h1>Bienvenido {currentUser.displayName}</h1>
@@ -52,7 +55,7 @@ export default function ChoouseUsernane() {
         {state === 5 ? <p> el nombre de usuario ya existe, escoge otro</p> : ""}
 
         <div>
-          <input type='text' onChange={handleInputUsername} />
+          <input type='text' onClick={handleInputUsername} />
         </div>
 
         <div>
