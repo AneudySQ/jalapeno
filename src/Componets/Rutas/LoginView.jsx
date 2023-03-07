@@ -56,8 +56,8 @@ export default function LoginView() {
 
   function handleonUserNotRegistered(user) {
     //setCurrentUser(user);
-    //setCurrentState(3);
-    navigate('/chooseusername')
+   // setCurrentState(3);
+    navigate('/chooseusername');
   }
 
   function handleonUserNotLoggedIn() {

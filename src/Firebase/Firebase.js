@@ -63,16 +63,16 @@ export async function existsUsername(username) {
 */
 
 export async function existsUsername(username) {
-  const users = [];
-  const q = query(collection(db, "users"), where("username", "==", username));
+    const users = [];
+    const q = query(collection(db, "users"), where("username", "==", username));
 
-  const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q);
 
-  querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-    users.push(doc.data());
-  });
-  return users.length > 0 ? users[0].uid : null;
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        users.push(doc.data());
+    });
+    return users.length > 0 ? users[0].uid : null;
 }
 
 export async function registerNewUser(user) {
@@ -82,7 +82,7 @@ export async function registerNewUser(user) {
     } catch (e) {
         console.error("Error adding document: ", e);
     }
-    }
+}
 
 export async function updateUser(user) {
     console.log(user);
@@ -92,7 +92,7 @@ export async function updateUser(user) {
     } catch (e) {
         console.error("Error adding document: ", e);
     }
-    }
+}
 
 
 export async function getUserInfo(uid) {

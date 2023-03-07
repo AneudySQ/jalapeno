@@ -1,5 +1,5 @@
 import AutProvider from "./AutProvider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { existsUsername, updateUser } from "../../Firebase/Firebase";
 
@@ -29,10 +29,9 @@ export default function ChoouseUsernane() {
   }
 
   async function handleContinue() {
-  
+
 
     if (username !== "") {
-      debugger
       const exists = await existsUsername(username);
       if (exists) {
         setState(5);
@@ -47,7 +46,7 @@ export default function ChoouseUsernane() {
     }
   }
 
-  if (state === 3 || state === 5 ) {
+  if (state === 3 || state === 5) {
     return (
       <div>
         <h1>Bienvenido {currentUser.displayName}</h1>
@@ -61,6 +60,15 @@ export default function ChoouseUsernane() {
         <div>
           <button onClick={handleContinue}>Continue</button>
         </div>
+      </div>
+    );
+  }
+  if (state === 6) {
+    return (
+      <div>
+        <h1>Ya eres miembro, felicidades MMG</h1>
+        <Link to="/DasboardView">Continuar</Link>
+
       </div>
     );
   }
