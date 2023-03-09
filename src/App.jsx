@@ -27,10 +27,10 @@ function App() {
           <Route path="*" element={<Index />} />
 
           <Route path='Login' element={<LoginView />} />
-          <Route path='DasboardView' element={<DasboardView />} />
-          <Route path='EditProfileView' element={<EditProfileView />} />
+          <Route path='Dasboard' element={<DasboardView />} />
+          <Route path='Dasboard/profile' element={<EditProfileView />} />
           <Route path='/:username' element={<ChoouseUsernane />} />
-          <Route path='SignOutView' element={<SignOutView />} />
+          <Route path='signout' element={<SignOutView />} />
           <Route path='ChoouseUsernane' element={<ChoouseUsernane />} />
         </Routes>
       </BrowserRouter>

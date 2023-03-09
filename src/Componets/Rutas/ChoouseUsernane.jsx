@@ -67,7 +67,7 @@ export default function ChoouseUsernane() {
     return (
       <div>
         <h1>Ya eres miembro, felicidades MMG</h1>
-        <Link to="/DasboardView">Continuar</Link>
+        <Link to="/Dasboard">Continuar</Link>
 
       </div>
     );
