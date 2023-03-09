@@ -1,10 +1,10 @@
 import AutProvider from "../Rutas/AutProvider";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
 import { v4 as uuidv4 } from 'uuid'
 import { getLinks, insertNewLink } from "../../Firebase/Firebase";
-import { async } from "@firebase/util";
+import Link from '../Link'
 
 export default function DasboardView() {
   const navigate = useNavigate();
@@ -73,10 +73,9 @@ export default function DasboardView() {
     if (e.target.name === "url") {
       setUrl(value);
     }
-
-
-
   }
+  function handleDeleteLink() { };
+  function handleUpdateLink() { };
 
   //(DasboardWapper)Aqui es donde vas a cargar el menu de logueo que aparecera en totos lados cuando ya el usuario esta registrado
   return (
@@ -94,19 +93,28 @@ export default function DasboardView() {
           <input type="submit" value="Crear nuevo Link" />
 
         </form>
+
         <div>
-          {
-            links.map((link) => (
-              <div key={link.Id}>
-                <h4><a href={link.title}>{link.title} </a> </h4>
-              </div>
-            ))
-          }
+          {links.map((link) => (
+            <div >
+              <a hrf={link.url}>{link.title}</a>
+            </div>
+          ))}
         </div>
       </div>
     </DasboardWapper>
   );
 
 }
+/*
+          {links.map((link) => (
+              <Link
+                key={link.docId}
+                url={link.url}
+                title={link.title}
+                onDelete={handleDeleteLink}
+                onUpdata={handleUpdateLink} />
+            ))}
 
+*/
 

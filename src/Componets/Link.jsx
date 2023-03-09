@@ -1,3 +1,7 @@
-export default function Link(){
-    return <div>Link</div>;
+
+
+export default function Link({ docId, title, url, onDelete, onUpdata }) {
+    <div key={docId}>
+        <a href={url}>{title} </a>
+    </div>
 }

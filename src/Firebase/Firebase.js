@@ -123,11 +123,12 @@ export async function getLinks(uid) {
 
         querySnapshot.forEach(doc => {
             const link = { ...doc.data() };
-            links.docId = doc.id;
+            link.docId = doc.id;
             links.push(link);
-        })
+        });
 
         return links;
+
     } catch (error) {
         console.error(error);
 
