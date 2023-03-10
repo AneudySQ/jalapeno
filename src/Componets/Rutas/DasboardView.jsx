@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
 import { v4 as uuidv4 } from 'uuid'
-import { getLinks, insertNewLink } from "../../Firebase/Firebase";
+import { deleteLink, getLinks, insertNewLink, updateLink } from "../../Firebase/Firebase";
 import Link from '../Link'
 
 export default function DasboardView() {
@@ -74,8 +74,19 @@ export default function DasboardView() {
       setUrl(value);
     }
   }
-  function handleDeleteLink() { };
-  function handleUpdateLink() { };
+  async function handleDeleteLink(docId) {
+    await deleteLink(docId)
+    const tmp = links.filter(link => link.docId !== docId )
+    setLinks([...tmp]) ;
+  };
+
+  async function handleUpdateLink(docId, title, url) {
+    const link = links.find(item => item.docId === docId);
+    console.log(link, docId, title, url)
+    link.title= title;
+    link.url= url;
+    await updateLink(docId, link)
+  };
 
   //(DasboardWapper)Aqui es donde vas a cargar el menu de logueo que aparecera en totos lados cuando ya el usuario esta registrado
   return (
@@ -96,25 +107,21 @@ export default function DasboardView() {
 
         <div>
           {links.map((link) => (
-            <div >
-              <a hrf={link.url}>{link.title}</a>
-            </div>
+            <Link
+              key={link.docId}
+              docId={link.docId}
+              url={link.url}
+              title={link.title}
+              onDelete={handleDeleteLink}
+              onUpdata={handleUpdateLink}
+            />
           ))}
+
         </div>
+
       </div>
     </DasboardWapper>
   );
 
 }
-/*
-          {links.map((link) => (
-              <Link
-                key={link.docId}
-                url={link.url}
-                title={link.title}
-                onDelete={handleDeleteLink}
-                onUpdata={handleUpdateLink} />
-            ))}
-
-*/
 
