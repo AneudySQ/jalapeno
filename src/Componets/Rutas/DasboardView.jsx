@@ -41,69 +41,50 @@ export default function DasboardView() {
     );
   }
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
-    addLink();
-  }
-
-  function addLink() {
-    if (title !== "" && url !== "") {
-      const newLink = {
-        id: uuidv4(),
-        title: title,
-        url: url,
-        uid: currentUser.uid,
-      };
-      const res = insertNewLink(newLink);
-      newLink.docId = res.id;
-      setTitle('');
-      setUrl('');
-      setLinks([...links, newLink]);
-    }
-  }
-
-
-
-  function handleOnChange(e) {
-    const value = e.target.value;
-    if (e.target.name === "title") {
-      setTitle(value);
-    }
-
-    if (e.target.name === "url") {
-      setUrl(value);
-    }
-  }
-  async function handleDeleteLink(docId) {
-    await deleteLink(docId)
-    const tmp = links.filter(link => link.docId !== docId )
-    setLinks([...tmp]) ;
-  };
-
-  async function handleUpdateLink(docId, title, url) {
-    const link = links.find(item => item.docId === docId);
-    console.log(link, docId, title, url)
-    link.title= title;
-    link.url= url;
-    await updateLink(docId, link)
-  };
-
-  //(DasboardWapper)Aqui es donde vas a cargar el menu de logueo que aparecera en totos lados cuando ya el usuario esta registrado
   return (
     <DasboardWapper>
-      <div>
-        <h1> Dasboard</h1>
+      <div className="container">
+        <h3 className="text-center"> Crea tu menu</h3>
+        < div className="container" >
+          <form className="card card-body">
 
-        <form action="" onSubmit={handleOnSubmit}>
-          <label htmlFor="title">Title</label>
-          <input type="text" name="title" onChange={handleOnChange} />
+            <div className="form-group input-group">
+              <input type="number"
+                cols="1"
+                name="orden"
+                min="1"
+                max="15"
+                step="2"
+                placeholder="Orden"
+              />
+              <input type="text"
+                className="form-control"
+                placeholder="Categoría"
+                name="categoria"
+              />
+              <div className="input-group-text bg-light">
+                <i className="material-icons">create</i>
+              </div>
+            </div>
 
-          <label htmlFor="url">Url</label>
-          <input type="text" name="url" onChange={handleOnChange} />
+            <div className="form-group">
+              <textarea
+                name="descripcion"
+                id=""
+                rows="3"
+                className="form-control"
+                placeholder="Descripcion de esta categoria"
+              >
+              </textarea>
+            </div>
 
-          <input type="submit" value="Crear nuevo Link" />
-
-        </form>
+            <input
+              type="submit"
+              value="Crear Categoria"
+              className="btn btn-primary btn-block"
+            />
+          </form>
+        </div>
 
         <div>
           {links.map((link) => (
@@ -112,9 +93,9 @@ export default function DasboardView() {
               docId={link.docId}
               url={link.url}
               title={link.title}
-              onDelete={handleDeleteLink}
+/*               onDelete={handleDeleteLink}
               onUpdata={handleUpdateLink}
-            />
+ */            />
           ))}
 
         </div>
@@ -125,3 +106,19 @@ export default function DasboardView() {
 
 }
 
+
+
+/* 
+
+        <form action="" onSubmit={}>
+          <label htmlFor="title">Title</label>
+          <input type="text" name="title" onChange={handleOnChange} />
+
+          <label htmlFor="url">Url</label>
+          <input type="text" name="url" onChange={handleOnChange} />
+
+          <input type="submit" value="Crear nuevo Link" />
+
+        </form>
+
+*/

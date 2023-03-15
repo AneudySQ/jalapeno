@@ -38,8 +38,9 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 const storage = getStorage(app);
+
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -47,20 +48,6 @@ export async function userExists(uid) {
     console.log(res);
     return res.exists();
 }
-/*
-export async function existsUsername(username) {
-        const users = [];
-        const docsRef = collection(db, 'users');
-        const q = query(docsRef, where('username', ' == ', username));
-
-        const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-            users.push(doc.data());
-        });
-        return users.length > 0 ? users[0].uid : null;
-}
-*/
 
 export async function existsUsername(username) {
     const users = [];

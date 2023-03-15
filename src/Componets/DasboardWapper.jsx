@@ -4,12 +4,12 @@ export default function DasboardWapper({ children }) {
     return (
         //Este es el menu que aparesera cuando para cuando la gente ya esta logueada
         <div>
-            
+
             <nav>
                 <div>Logo</div>
-                <Link to='/dasboard'>Links</Link>
-                <Link to='/dasboard/profile'>Profile</Link>
-                <Link to='/signout'>Profile</Link>
+                <Link to='/Buscadorhome' className="col-md-4">Buscadorhome</Link>
+                <Link to='/dasboard/Links' className="col-md-4">Links</Link>
+                <Link to='/dasboard' className="col-md-4">dasboard</Link>
             </nav>
             <div>{children}</div>
         </div>
