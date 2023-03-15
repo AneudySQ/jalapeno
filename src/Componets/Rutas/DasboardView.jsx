@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewCategory } from "../../Firebase/Firebase";
-//import Link from '../Link'
+import { insertNewCategory, getCategories } from "../../Firebase/Firebase";
+import Category from '../Category'
 
 export default function DasboardView() {
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ export default function DasboardView() {
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
     setState(2);
-    //const resLinks = await getLinks(user.uid);
-    // setLinks([...resLinks]);
+    const resCategories = await getCategories(user.uid);
+    setCategories([...resCategories]);
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
@@ -77,13 +77,13 @@ export default function DasboardView() {
 
   function handleOnChange(e) {
     const value = e.target.value;
-    if (e.target.nam === 'name') {
+    if (e.target.name === 'name') {
       setName(value)
     }
-    if (e.target.nam === 'order') {
+    if (e.target.name === 'order') {
       setOrder(value)
     }
-    if (e.target.nam === 'description') {
+    if (e.target.name === 'description') {
       setDescription(value)
     }
 
@@ -96,15 +96,14 @@ export default function DasboardView() {
         < div className="container" >
 
           <form className="card card-body" action="" onSubmit={handleOnSubmit}>
-
             <div className="form-group input-group">
               <input type="number"
                 cols="1"
-                name="order"
                 min="1"
                 max="15"
                 step="2"
                 placeholder="Orden"
+                name="order"
                 onChange={handleOnChange}
               />
               <input type="text"
@@ -112,7 +111,6 @@ export default function DasboardView() {
                 placeholder="Categoría"
                 name="name"
                 onChange={handleOnChange}
-
               />
               <div className="input-group-text bg-light">
                 <i className="material-icons">create</i>
@@ -137,6 +135,16 @@ export default function DasboardView() {
               className="btn btn-primary btn-block"
             />
           </form>
+          <div className="">
+            {
+              categories.map(category => (
+                <Category key={category.docId}
+                  name={category.name}
+                  //OnDelete={ }
+                  //onUpdata={ } 
+                  />
+              ))}
+          </div>
         </div>
 
         {/*         <div>

@@ -92,35 +92,35 @@ export async function getUserInfo(uid) {
 
 export async function insertNewCategory(category) {
     try {
-        const docRef = collection(db, 'categories');
+        const docRef = collection(db, 'Categories');
         const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
         console.log('error');
     }
 }
-/* 
-export async function getLinks(uid) {
-    const links = [];
+
+export async function getCategories(uid) {
+    const Categories = [];
     try {
-        const collectionRef = collection(db, 'links');
+        const collectionRef = collection(db, 'Categories');
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            const link = { ...doc.data() };
-            link.docId = doc.id;
-            links.push(link);
+            const category = { ...doc.data() };
+            category.docId = doc.id;
+            Categories.push(category);
         });
 
-        return links;
+        return Categories;
 
     } catch (error) {
         console.error(error);
 
     }
 }
-
+/* 
 export async function updateLink(docId, link) {
     try {
         const docRef = doc(db, 'links', docId);
