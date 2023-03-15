@@ -138,31 +138,19 @@ export default function DasboardView() {
           <div className="">
             {
               categories.map(category => (
-                <Category key={category.docId}
+                <Category
+                  key={category.docId}
+                  order={category.order}
                   name={category.name}
-                  //OnDelete={ }
-                  //onUpdata={ } 
-                  />
+                  description={category.description}
+                //OnDelete={ }
+                //onUpdata={ } 
+                />
               ))}
           </div>
         </div>
 
-        {/*         <div>
-          {links.map((link) => (
-            <Link
-              key={link.docId}
-              docId={link.docId}
-              url={link.url}
-              title={link.title}
-
-              onDelete={handleDeleteLink}
-              onUpdata={handleUpdateLink}
-             />
-          ))}
-
-        </div>
-
- */}      </div>
+      </div>
     </DasboardWapper>
   );
 

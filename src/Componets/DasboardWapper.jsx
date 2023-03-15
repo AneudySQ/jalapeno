@@ -10,6 +10,7 @@ export default function DasboardWapper({ children }) {
                 <Link to='/Buscadorhome' className="col-md-4">Buscadorhome</Link>
                 <Link to='/dasboard/Links' className="col-md-4">Links</Link>
                 <Link to='/dasboard' className="col-md-4">dasboard</Link>
+                <Link to='/Depuravionhtml' className="col-md-4">Deporavion</Link>
             </nav>
             <div>{children}</div>
         </div>

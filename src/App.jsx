@@ -15,6 +15,7 @@ import SignOutView from './Componets/Rutas/SignOutView';
 import ChoouseUsernane from './Componets/Rutas/ChoouseUsernane';
 import { Links } from './Componets/Links';
 import { Buscadorhome } from './Componets/Buscadorhome';
+import Depuravionhtml from './Componets/Depuravionhtml';
 
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path='PublicProfileview' element={<PublicProfileview />} />
           <Route path='/dasboard/Links' element={<Links />} />
           <Route path='Buscadorhome' element={<Buscadorhome />} />
+          <Route path='Depuravionhtml' element={<Depuravionhtml />} />
         </Routes>
       </BrowserRouter>
     </div>
