@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../Firebase/Firebase";
+//import { db } from "../Firebase/Firebase";
 
 import DasboardWapper from "./DasboardWapper";
 import LinkForm from "./LinkForm";
@@ -8,7 +8,7 @@ import LinkForm from "./LinkForm";
 export const Links = () => {
 
     const addOrEditCategory = async (categoryobject) => {
-       await db.colection('Category').doc().set(categoryobject);
+      // await db.colection('Category').doc().set(categoryobject);
        console.log('Nueva tarea gregada')
     }
 

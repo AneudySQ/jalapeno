@@ -38,9 +38,8 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore(app);
+const db = getFirestore(app);
 const storage = getStorage(app);
-
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -91,16 +90,16 @@ export async function getUserInfo(uid) {
 }
 
 
-export async function insertNewLink(link) {
+export async function insertNewCategory(category) {
     try {
-        const docRef = collection(db, 'links');
-        const res = await addDoc(docRef, link);
+        const docRef = collection(db, 'categories');
+        const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
-        console.error(error);
+        console.log('error');
     }
 }
-
+/* 
 export async function getLinks(uid) {
     const links = [];
     try {
@@ -141,3 +140,4 @@ export async function deleteLink(docId) {
         console.error(error);
     }
 }
+ */
