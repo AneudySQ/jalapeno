@@ -9,7 +9,7 @@ export default function DasboardWapper({ children }) {
                 <div>Logo</div>
                 <Link to='/dasboard'>Links</Link>
                 <Link to='/dasboard/profile'>Profile</Link>
-                <Link to='/signout'>Profile</Link>
+                <Link to='/Depuravionhtml'>Depuravionhtml</Link>
             </nav>
             <div>{children}</div>
         </div>
