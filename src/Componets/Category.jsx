@@ -9,7 +9,7 @@ export default function Category({ docId, name, order, description, OnDelete, on
             {description}
 
             <div className="col-lg-6 m-1 " >
-                <div class="box_style_2" id="main_menu">
+                <div className="box_style_2" id="main_menu">
                     <h2 className="inner">Menu</h2>
                     <h3 className="nomargin_top" id="starters">Starters</h3>
                     <p>
