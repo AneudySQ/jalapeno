@@ -132,14 +132,13 @@ export async function updateCategorymenu(docId, category) {
     }
 }
 
-/* 
-export async function deleteLink(docId) {
+
+export async function deleteCategory(docId) {
     try {
-        const docRef = doc(db, 'links', docId);
+        const docRef = doc(db, 'Categories', docId);
         const res = await deleteDoc(docRef)
         return res;
     } catch (error) {
         console.error(error);
     }
 }
- */

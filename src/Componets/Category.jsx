@@ -27,6 +27,10 @@ export default function Category({ docId, title, OnDelete, onUpdata }) {
         setCurrentCategoryName(e.target.value)
     }
 
+    function handlerDelete(){
+        OnDelete(docId)
+    }
+
     return (
 
         <div className=" mb-2" key={docId}>
@@ -52,7 +56,7 @@ export default function Category({ docId, title, OnDelete, onUpdata }) {
                                 <i className="icon-pencil ">
                                 </i>Editar
                             </a>
-                            <a href="#0"><i className="icon_minus_alt"></i> Eliminar</a>
+                            <a href="#0"><i className="icon_minus_alt" onClick={handlerDelete}></i> Eliminar</a>
                         </>
                     )}
                 </div>
