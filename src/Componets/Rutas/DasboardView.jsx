@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewCategory, getCategories } from "../../Firebase/Firebase";
+import { insertNewCategory, getCategories, updateCategorymenu } from "../../Firebase/Firebase";
 import Category from '../Category'
 
 export default function DasboardView() {
@@ -11,13 +11,9 @@ export default function DasboardView() {
   const [currentUser, setCurrentUser] = useState({});
   const [state, setState] = useState(0);
 
-  const [name, setName] = useState('');
-  const [order, setOrder] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('');
   const [categories, setCategories] = useState([]);
 
-
-  // const [links, setLinks] = useState([]);
 
 
   /* Estas son las validaciones dl formulario */
@@ -57,19 +53,15 @@ export default function DasboardView() {
   }
 
   function addCategory() {
-    if (name !== '' && order !== '' && description !== '') {
+    if (title !== '') {
       const newCategory = {
         id: uuidv4(),
-        name: name,
-        order: order,
-        description: description,
+        title: title,
         uid: currentUser.uid,
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
-      setName('');
-      setOrder('');
-      setDescription('');
+      setTitle('');
       setCategories([...categories, newCategory]);
     }
   }
@@ -77,80 +69,74 @@ export default function DasboardView() {
 
   function handleOnChange(e) {
     const value = e.target.value;
-    if (e.target.name === 'name') {
-      setName(value)
+    if (e.target.name === 'title') {
+      setTitle(value);
     }
-    if (e.target.name === 'order') {
-      setOrder(value)
-    }
-    if (e.target.name === 'description') {
-      setDescription(value)
-    }
-
   }
+
+  function handlerDeleteCategoryName() { }
+  async function handlerUpdataCategoryName(docId, categories) {
+    const title_menu_category = categories.find(item => item.docId === docId);
+    title_menu_category.title_menu_category = title_menu_category;
+    await updateCategorymenu(docId, title_menu_category);
+  }
+
+
+
+
 
   return (
     <DasboardWapper>
-      <div className="container">
-        <h3 className="text-center"> Crea tu menu</h3>
-        < div className="container" >
+      <div className="container margin_60 " >
+        <section id="section-2">
+          <div className="container">
+            {/* Aqyi esta la descripcion general */}
+            <div className="indent_title_in">
+              <i className="icon_document_alt"></i>
+              <h3>Editar la dista de tu menu</h3>
+              <p>En esta seccion podras crear el nenu que necesitas</p>
+            </div>
 
-          <form className="card card-body" action="" onSubmit={handleOnSubmit}>
-            <div className="form-group input-group">
-              <input type="number"
-                cols="1"
-                min="1"
-                max="15"
-                step="2"
-                placeholder="Orden"
-                name="order"
-                onChange={handleOnChange}
-              />
-              <input type="text"
-                className="form-control"
-                placeholder="Categoría"
-                name="name"
-                onChange={handleOnChange}
-              />
-              <div className="input-group-text bg-light">
-                <i className="material-icons">create</i>
+
+            {/* input para agregar categoria */}
+            <form action="" onSubmit={handleOnSubmit}>
+              <label htmlFor="title">Crea una Categoria a tu menu</label>
+
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  name="title"
+                  className="form-control"
+                  placeholder="Ej. Platos fuertes"
+                  onChange={handleOnChange}
+                />
+                {/* input para enviar formulario */}
+                <input
+                  type="submit"
+                  value="Crear Categoria"
+                  className="btn btn-outline-primary"
+                />
               </div>
-            </div>
 
-            <div className="form-group">
-              <textarea
-                name="description"
-                rows="3"
-                className="form-control"
-                placeholder="Descripcion de esta categoria"
-                onChange={handleOnChange}
+            </form>
 
-              >
-              </textarea>
-            </div>
 
-            <input
-              type="submit"
-              value="Crear Categoria"
-              className="btn btn-primary btn-block"
-            />
-          </form>
-          <div className="">
-            {
-              categories.map(category => (
+            <div className="" >
+              {categories.map((category) => (
                 <Category
                   key={category.docId}
-                  order={category.order}
-                  name={category.name}
-                  description={category.description}
-                //OnDelete={ }
-                //onUpdata={ } 
+                  title={category.title}
+                  docId={title.doc}
+                  OnDelete={handlerDeleteCategoryName}
+                  onUpdata={handlerUpdataCategoryName}
                 />
               ))}
+            </div>
           </div>
-        </div>
-
+        </section >
       </div>
+
+
     </DasboardWapper>
   );
 

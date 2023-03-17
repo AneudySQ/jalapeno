@@ -100,6 +100,8 @@ export async function insertNewCategory(category) {
     }
 }
 
+
+/* Esta funcionn sube las categorias */
 export async function getCategories(uid) {
     const Categories = [];
     try {
@@ -119,18 +121,18 @@ export async function getCategories(uid) {
         console.error(error);
 
     }
-}
-/* 
-export async function updateLink(docId, link) {
+} 
+export async function updateCategorymenu(docId, menucategory) {
     try {
-        const docRef = doc(db, 'links', docId);
-        const res = await setDoc(docRef, link);
+        const docRef = doc(db, 'Categories', docId);
+        const res = await setDoc(docRef, menucategory);
         return res;
     } catch (error) {
         console.error();
     }
 }
 
+/* 
 export async function deleteLink(docId) {
     try {
         const docRef = doc(db, 'links', docId);

@@ -1,24 +1,62 @@
-export default function Category({ docId, name, order, description, OnDelete, onUpdata }) {
+import { useState, useRef, useEffect } from "react";
+
+export default function Category({ docId, title, OnDelete, onUpdata }) {
+
+
+    const [currentCategoryName, setCurrentCategoryName] = useState(title);
+    const [editCategoryName, setEditCategoryName] = useState(false);
+
+    const namecategoryRef = useRef(null)
+
+    useEffect(() => {
+        if (namecategoryRef.current) {
+            namecategoryRef.current.focus();
+        }
+    }, [editCategoryName])
+
+
+    function handlerBlurNameCategory(e) {
+        setEditCategoryName(false);
+        onUpdata(docId, currentCategoryName);
+    };
+
+    function handleEditNameCategory() {
+        setEditCategoryName(true);
+    }
+    function handleChangeTitle(e) {
+        setCurrentCategoryName(e.target.value)
+    }
+
     return (
-        <div className="card bg-black container " key={docId}>
-            <div className="row">
-                
-            </div>
-            {order}
-            {name}
-            {description}
 
-            <div className="col-lg-6 m-1 " >
-                <div className="box_style_2" id="main_menu">
-                    <h2 className="inner">Menu</h2>
-                    <h3 className="nomargin_top" id="starters">Starters</h3>
-                    <p>
-                        Te ferri iisque aliquando pro, posse nonumes efficiantur in cum. Sensibus reprimique eu pro. Fuisset mentitum deleniti sit ea.
-                    </p>
+        <div className=" mb-2" key={docId}>
+            <div className="menu-item-section clearfix ">
+                <div  >
 
+                    {editCategoryName ? (
+                        <>
+                            <input
+                                ref={namecategoryRef}
+                                value={currentCategoryName}
+                                onChange={handleChangeTitle}
+                                onBlur={handlerBlurNameCategory}
+                                className="position-relative"
+                            />
+                            <a href="#0"><i className=" icon-check-1"></i> Actualizar</a>
+                        </>
+                    ) : (
+                        <>
+                            {currentCategoryName}
+                            <a href="#0"
+                                onClick={handleEditNameCategory}>
+                                <i className="icon-pencil ">
+                                </i>Editar
+                            </a>
+                            <a href="#0"><i className="icon_minus_alt"></i> Eliminar</a>
+                        </>
+                    )}
                 </div>
             </div>
-
         </div>
 
 
