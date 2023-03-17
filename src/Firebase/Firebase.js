@@ -122,10 +122,10 @@ export async function getCategories(uid) {
 
     }
 } 
-export async function updateCategorymenu(docId, menucategory) {
+export async function updateCategorymenu(docId, category) {
     try {
         const docRef = doc(db, 'Categories', docId);
-        const res = await setDoc(docRef, menucategory);
+        const res = await setDoc(docRef, category);
         return res;
     } catch (error) {
         console.error();

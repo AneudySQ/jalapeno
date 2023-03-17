@@ -75,13 +75,11 @@ export default function DasboardView() {
   }
 
   function handlerDeleteCategoryName() { }
-  async function handlerUpdataCategoryName(docId, categories) {
-    const title_menu_category = categories.find(item => item.docId === docId);
-    title_menu_category.title_menu_category = title_menu_category;
-    await updateCategorymenu(docId, title_menu_category);
+  async function handlerUpdataCategoryName(docId, title) {
+    const category = categories.find(item => item.docId === docId);
+    category.title = title;
+    await updateCategorymenu(docId, category);
   }
-
-
 
 
 
@@ -126,7 +124,7 @@ export default function DasboardView() {
                 <Category
                   key={category.docId}
                   title={category.title}
-                  docId={title.doc}
+                  docId={category.docId}
                   OnDelete={handlerDeleteCategoryName}
                   onUpdata={handlerUpdataCategoryName}
                 />
