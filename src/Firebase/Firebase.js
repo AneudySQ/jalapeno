@@ -23,7 +23,6 @@ import {
     setDoc,
     deleteDoc,
 } from "firebase/firestore";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_APIKEY,
@@ -38,8 +37,8 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+export const db = getFirestore();
+export const storage = getStorage();
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -47,20 +46,6 @@ export async function userExists(uid) {
     console.log(res);
     return res.exists();
 }
-/*
-export async function existsUsername(username) {
-        const users = [];
-        const docsRef = collection(db, 'users');
-        const q = query(docsRef, where('username', ' == ', username));
-
-        const querySnapshot = await getDocs(q);
-
-    querySnapshot.forEach((doc) => {
-            users.push(doc.data());
-        });
-        return users.length > 0 ? users[0].uid : null;
-}
-*/
 
 export async function existsUsername(username) {
     const users = [];
@@ -104,53 +89,55 @@ export async function getUserInfo(uid) {
 }
 
 
-export async function insertNewLink(link) {
+export async function insertNewCategory(category) {
     try {
-        const docRef = collection(db, 'links');
-        const res = await addDoc(docRef, link);
+        const docRef = collection(db, 'Categories');
+        const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
         console.error(error);
     }
 }
 
-export async function getLinks(uid) {
-    const links = [];
+
+/* Esta funcionn sube las categorias */
+export async function getCategories(uid) {
+    const Categories = [];
     try {
-        const collectionRef = collection(db, 'links');
+        const collectionRef = collection(db, 'Categories');
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            const link = { ...doc.data() };
-            link.docId = doc.id;
-            links.push(link);
+            const category = { ...doc.data() };
+            category.docId = doc.id;
+            Categories.push(category);
         });
 
-        return links;
+        return Categories;
 
     } catch (error) {
         console.error(error);
 
     }
 }
-
-export async function updateLink(docId, link) {
+export async function updateCategory(docId, category) {
     try {
-        const docRef = doc(db, 'links', docId);
-        const res = await setDoc(docRef, link);
+        const docRef = doc(db, 'Categories', docId);
+        const res = await setDoc(docRef, category);
         return res;
     } catch (error) {
         console.error();
     }
 }
 
-export async function deleteLink(docId) {
+export async function deleteCategory(docId) {
     try {
-        const docRef = doc(db, 'links', docId);
+        const docRef = doc(db, 'Categories', docId);
         const res = await deleteDoc(docRef)
         return res;
     } catch (error) {
         console.error(error);
     }
 }
+

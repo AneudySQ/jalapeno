@@ -2,25 +2,27 @@ import AutProvider from "../Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
-import { v4 as uuidv4 } from 'uuid'
-import { deleteLink, getLinks, insertNewLink, updateLink } from "../../Firebase/Firebase";
-import Link from '../Link'
+import { v4 as uuidv4 } from 'uuid';
+import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
+import Category from '../Category'
 
 export default function DasboardView() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
   const [state, setState] = useState(0);
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [links, setLinks] = useState([]);
+
+  const [title, setTitle] = useState("");
+  const [categories, setCategories] = useState([]);
 
 
+
+  /* Estas son las validaciones dl formulario */
 
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
     setState(2);
-    const resLinks = await getLinks(user.uid);
-    setLinks([...resLinks]);
+    const resCategories = await getCategories(user.uid);
+    setCategories([...resCategories]);
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
@@ -41,60 +43,112 @@ export default function DasboardView() {
     );
   }
 
+
+  /* Aqui comienzan las funciones para el formulario */
+
+
   function handleOnSubmit(e) {
     e.preventDefault();
-    addLink();
+    addCategory();
   }
 
-  function addLink() {
-    if (title !== "" && url !== "") {
-      const newLink = {
+  function addCategory() {
+    if (title !== "") {
+      const newCategory = {
         id: uuidv4(),
         title: title,
-        url: url,
         uid: currentUser.uid,
+
       };
-      const res = insertNewLink(newLink);
-      newLink.docId = res.id;
-      setTitle('');
-      setUrl('');
-      setLinks([...links, newLink]);
+      const res = insertNewCategory(newCategory);
+      newCategory.docId = res.id;
+      setTitle("");
+      setCategories([...categories, newCategory]);
     }
   }
-
 
 
   function handleOnChange(e) {
     const value = e.target.value;
-    if (e.target.name === "title") {
+    if (e.target.name === 'title') {
       setTitle(value);
     }
-
-    if (e.target.name === "url") {
-      setUrl(value);
-    }
   }
-  async function handleDeleteLink(docId) {
-    await deleteLink(docId)
-    const tmp = links.filter(link => link.docId !== docId )
-    setLinks([...tmp]) ;
-  };
 
-  async function handleUpdateLink(docId, title, url) {
-    const link = links.find(item => item.docId === docId);
-    console.log(link, docId, title, url)
-    link.title= title;
-    link.url= url;
-    await updateLink(docId, link)
-  };
+  async function handlerUpdataCategory(docId, title) {
+    const category = categories.find(item => item.docId === docId);
+    category.title = title;
+    await updateCategory(docId, category);
+  }
 
-  //(DasboardWapper)Aqui es donde vas a cargar el menu de logueo que aparecera en totos lados cuando ya el usuario esta registrado
+  async function handlerDeleteCategory(docId) {
+    await deleteCategory(docId);
+    const tmp = categories.filter(category => category.docId !== docId);
+    setCategories([...tmp]);
+  }
+
   return (
     <DasboardWapper>
-      <div>
-        <h1> Dasboard</h1>
+      <div className="container margin_60 " >
+        <section id="section-2">
+          <div className="container">
+            {/* Aqyi esta la descripcion general */}
+            <div className="indent_title_in">
+              <i className="icon_document_alt"></i>
+              <h3>Editar la dista de tu menu</h3>
+              <p>En esta seccion podras crear el nenu que necesitas</p>
+            </div>
 
-        <form action="" onSubmit={handleOnSubmit}>
+
+            {/* input para agregar categoria */}
+            <form action="" onSubmit={handleOnSubmit}>
+              <label htmlFor="title">Crea una Categoria a tu menu</label>
+
+              <div className="input-group mb-3" >
+                <input
+                  type="text"
+                  name="title"
+                  className="form-control"
+                  placeholder="Ej. Platos fuertes"
+                  onChange={handleOnChange}
+                />
+                {/* input para enviar formulario */}
+                <input
+                  type="submit"
+                  value="Crear Categoria"
+                  className="btn btn-outline-primary"
+                />
+              </div>
+
+            </form>
+
+
+            <div >
+              {categories.map((category) => (
+                <Category
+                  key={category.docId}
+                  docId={category.docId}
+                  title={category.title}
+                  onUpdata={handlerUpdataCategory}
+                  onDelete={handlerDeleteCategory}
+                />
+              ))}
+            </div>
+          </div>
+        </section >
+      </div>
+
+
+    </DasboardWapper>
+  );
+
+}
+
+
+
+/* 
+
+        <form action="" onSubmit={}>
           <label htmlFor="title">Title</label>
           <input type="text" name="title" onChange={handleOnChange} />
 
@@ -105,23 +159,4 @@ export default function DasboardView() {
 
         </form>
 
-        <div>
-          {links.map((link) => (
-            <Link
-              key={link.docId}
-              docId={link.docId}
-              url={link.url}
-              title={link.title}
-              onDelete={handleDeleteLink}
-              onUpdata={handleUpdateLink}
-            />
-          ))}
-
-        </div>
-
-      </div>
-    </DasboardWapper>
-  );
-
-}
-
+*/
