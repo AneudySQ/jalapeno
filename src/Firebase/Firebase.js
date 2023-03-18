@@ -37,8 +37,8 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+export const db = getFirestore();
+export const storage = getStorage();
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -120,7 +120,7 @@ export async function getCategories(uid) {
         console.error(error);
 
     }
-} 
+}
 export async function updateCategory(docId, category) {
     try {
         const docRef = doc(db, 'Categories', docId);
@@ -132,6 +132,8 @@ export async function updateCategory(docId, category) {
 }
 
 
+
+
 export async function deleteCategory(docId) {
     try {
         const docRef = doc(db, 'Categories', docId);
@@ -141,3 +143,4 @@ export async function deleteCategory(docId) {
         console.error(error);
     }
 }
+

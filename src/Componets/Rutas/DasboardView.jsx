@@ -58,6 +58,7 @@ export default function DasboardView() {
         id: uuidv4(),
         title: title,
         uid: currentUser.uid,
+        
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
@@ -103,7 +104,7 @@ export default function DasboardView() {
             <form action="" onSubmit={handleOnSubmit}>
               <label htmlFor="title">Crea una Categoria a tu menu</label>
 
-              <div className="input-group mb-3">
+              <div className="input-group mb-3" >
                 <input
                   type="text"
                   name="title"
