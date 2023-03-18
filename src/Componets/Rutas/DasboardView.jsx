@@ -126,7 +126,7 @@ export default function DasboardView() {
             <div >
               {categories.map((category) => (
                 <Category
-                  key={category.id}
+                  key={category.docId}
                   docId={category.docId}
                   title={category.title}
                   onUpdata={handlerUpdataCategory}

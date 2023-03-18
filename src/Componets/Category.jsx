@@ -27,7 +27,7 @@ export default function Category({ docId, title, onDelete, onUpdata }) {
         setCurrentCategoryName(e.target.value)
     }
 
-    function handleDelete(){
+    function handleDelete() {
         onDelete(docId);
     }
 
@@ -35,6 +35,43 @@ export default function Category({ docId, title, onDelete, onUpdata }) {
 
         <div className=" mb-2" key={docId} >
             <div className="menu-item-section clearfix ">
+                <div >
+                    {editCategoryName ? (
+                        <>
+                            <input
+                                ref={namecategoryRef}
+                                value={currentCategoryName}
+                                onChange={handleChangeTitle}
+                                onBlur={handlerBlurNameCategory}
+                            />
+                            <button><i className=" icon-check-1"></i> Actualizar</button>
+                            
+                        </>
+                    ) : (
+                        <>
+                            {currentCategoryName}
+                            <button
+                                onClick={handleEditNameCategory}>
+                                <i className="icon-pencil ">
+                                </i>Editar
+                            </button>
+                            
+                                <button onClick={handleDelete}><i className="icon_minus_alt" ></i> Eliminar</button>
+                        </>
+                    )}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    );
+}
+
+
+/* 
                 <div >
                     {editCategoryName ? (
                         <>
@@ -58,12 +95,5 @@ export default function Category({ docId, title, onDelete, onUpdata }) {
                         </>
                     )}
                 </div>
-            </div>
-        </div>
 
-
-
-
-
-    );
-}
+*/
