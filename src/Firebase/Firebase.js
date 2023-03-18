@@ -95,7 +95,7 @@ export async function insertNewCategory(category) {
         const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
-        console.error('error');
+        console.error(error);
     }
 }
 
