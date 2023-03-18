@@ -23,7 +23,6 @@ import {
     setDoc,
     deleteDoc,
 } from "firebase/firestore";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_APIKEY,
@@ -122,7 +121,7 @@ export async function getCategories(uid) {
 
     }
 } 
-export async function updateCategorymenu(docId, category) {
+export async function updateCategory(docId, category) {
     try {
         const docRef = doc(db, 'Categories', docId);
         const res = await setDoc(docRef, category);

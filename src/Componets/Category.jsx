@@ -28,7 +28,7 @@ export default function Category({ docId, title, OnDelete, onUpdata }) {
     }
 
     function handlerDelete(){
-        OnDelete(docId)
+        OnDelete(docId);
     }
 
     return (

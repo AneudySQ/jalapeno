@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DasboardWapper from "../DasboardWapper";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewCategory, getCategories, updateCategorymenu, deleteCategory } from "../../Firebase/Firebase";
+import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
 import Category from '../Category'
 
 export default function DasboardView() {
@@ -74,18 +74,17 @@ export default function DasboardView() {
     }
   }
 
-  async function handlerDeleteCategoryName(docId) {
-    await deleteCategory(docId)
+  async function handlerUpdataCategory(docId, title) {
+    const category = categories.find(item => item.docId === docId);
+    category.title = title;
+    await updateCategory(docId, category);
+  }
+
+  async function handlerDeleteCategory(docId) {
+    await deleteCategory(docId);
     const tmp = categories.filter(category => category.docId !== docId);
     setCategories([...tmp])
   }
-  async function handlerDelete(docId, title) {
-    const category = categories.find(item => item.docId === docId);
-    category.title = title;
-    await updateCategorymenu(docId, category);
-  }
-
-
 
   return (
     <DasboardWapper>
@@ -127,10 +126,10 @@ export default function DasboardView() {
               {categories.map((category) => (
                 <Category
                   key={category.docId}
-                  title={category.title}
                   docId={category.docId}
-                  OnDelete={handlerDeleteCategoryName}
-                  onUpdata={handlerDelete}
+                  title={category.title}
+                  onUpdata={handlerUpdataCategory}
+                  OnDelete={handlerDeleteCategory}
                 />
               ))}
             </div>
