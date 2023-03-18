@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 
-export default function Category({ docId, title, OnDelete, onUpdata }) {
+export default function Category({ docId, title, onDelete, onUpdata }) {
 
 
     const [currentCategoryName, setCurrentCategoryName] = useState(title);
@@ -27,16 +27,15 @@ export default function Category({ docId, title, OnDelete, onUpdata }) {
         setCurrentCategoryName(e.target.value)
     }
 
-    function handlerDelete(){
-        OnDelete(docId);
+    function handleDelete(){
+        onDelete(docId);
     }
 
     return (
 
-        <div className=" mb-2" key={docId}>
+        <div className=" mb-2" key={docId} >
             <div className="menu-item-section clearfix ">
-                <div  >
-
+                <div >
                     {editCategoryName ? (
                         <>
                             <input
@@ -44,19 +43,18 @@ export default function Category({ docId, title, OnDelete, onUpdata }) {
                                 value={currentCategoryName}
                                 onChange={handleChangeTitle}
                                 onBlur={handlerBlurNameCategory}
-                                className="position-relative"
                             />
-                            <a href="#0"><i className=" icon-check-1"></i> Actualizar</a>
+                            <button><i className=" icon-check-1"></i> Actualizar</button>
                         </>
                     ) : (
                         <>
                             {currentCategoryName}
-                            <a href="#0"
+                                <button
                                 onClick={handleEditNameCategory}>
                                 <i className="icon-pencil ">
                                 </i>Editar
-                            </a>
-                            <a href="#0"><i className="icon_minus_alt" onClick={handlerDelete}></i> Eliminar</a>
+                                </button>
+                                <button><i className="icon_minus_alt" onClick={handleDelete}></i> Eliminar</button>
                         </>
                     )}
                 </div>

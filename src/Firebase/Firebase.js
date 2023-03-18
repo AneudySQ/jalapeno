@@ -95,7 +95,7 @@ export async function insertNewCategory(category) {
         const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
-        console.log('error');
+        console.error('error');
     }
 }
 
@@ -130,9 +130,6 @@ export async function updateCategory(docId, category) {
         console.error();
     }
 }
-
-
-
 
 export async function deleteCategory(docId) {
     try {
