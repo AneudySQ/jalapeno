@@ -11,7 +11,7 @@ export default function DasboardView() {
   const [currentUser, setCurrentUser] = useState({});
   const [state, setState] = useState(0);
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [categories, setCategories] = useState([]);
 
 
@@ -52,7 +52,7 @@ export default function DasboardView() {
   }
 
   function addCategory() {
-    if (title !== '') {
+    if (title !== "") {
       const newCategory = {
         id: uuidv4(),
         title: title,
@@ -61,7 +61,7 @@ export default function DasboardView() {
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
-      setTitle('');
+      setTitle("");
       setCategories([...categories, newCategory]);
     }
   }
