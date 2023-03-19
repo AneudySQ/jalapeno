@@ -4,7 +4,12 @@ import DasboardWapper from '../DasboardWapper'
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react';
 
-import { setUserProfilePicture, getProfilePhotoUrl, updateUser } from '../../Firebase/Firebase'
+import {
+  setUserProfilePicture,
+  getProfilePhotoUrl,
+  updateUser, 
+  
+} from '../../Firebase/Firebase'
 
 export default function EditProfileView() {
 
@@ -29,7 +34,7 @@ export default function EditProfileView() {
     navigate('/login');
   }
 
-  function handleOpenFilePicture() {
+  function handleOpenFilePicker() {
     if (fileRef.current) {
       fileRef.current.click();
     }
@@ -45,6 +50,7 @@ export default function EditProfileView() {
         const imageData = fileReader.result;
 
         const res = await setUserProfilePicture(currentUser.uid, imageData);
+        console.log(res)
         if (res) {
           const tmpUser = { ...currentUser };
           tmpUser.profilePicture = res.metadata.fullPath;
@@ -52,11 +58,12 @@ export default function EditProfileView() {
           setCurrentUser({ ...tmpUser });
           const url = await getProfilePhotoUrl(currentUser.profilePicture);
           setProfileUrl(url);
+
         }
       }
     }
   }
- 
+
 
   if (state !== 2) {
     return <AutProvider
@@ -80,7 +87,7 @@ export default function EditProfileView() {
           </div>
           <div>
             <button
-              onClick={handleOpenFilePicture}>
+              onClick={handleOpenFilePicker}>
               Choose new profile Pinture
             </button>
             <input

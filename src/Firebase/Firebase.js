@@ -7,7 +7,6 @@ import {
     uploadBytes,
     getDownloadURL,
     getBytes,
-
 } from "firebase/storage";
 
 
@@ -22,6 +21,7 @@ import {
     where,
     setDoc,
     deleteDoc,
+    
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -144,6 +144,7 @@ export async function deleteCategory(docId) {
 export async function setUserProfilePicture(uid, file) {
     try {
         const imageRef = ref(storage, `images/${uid}`);
+
         const resUpload = await uploadBytes(imageRef, file)
         return resUpload;
     } catch (error) {
@@ -153,10 +154,11 @@ export async function setUserProfilePicture(uid, file) {
 
 export async function getProfilePhotoUrl(profilePicture) {
     try {
-        const imageRef = (storage, profilePicture);
+        const imageRef = ref(storage, profilePicture);
+
 
         const url = await getDownloadURL(imageRef);
-
+        
         return url;
     } catch (error) {
         console.error(error);

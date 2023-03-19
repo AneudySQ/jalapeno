@@ -3,7 +3,7 @@ import {
   onAuthStateChanged,
   signInWithPopup
 } from "firebase/auth";
-import { auth, userExists } from "../../Firebase/Firebase";
+import { auth, userExists,  } from "../../Firebase/Firebase";
 import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
