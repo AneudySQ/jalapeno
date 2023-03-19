@@ -4,12 +4,12 @@ import DasboardWapper from '../DasboardWapper'
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react';
 
-import { setUserProfilePicture } from '../../Firebase/Firebase'
+import { setUserProfilePicture, getProfilePhotoUrl, updateUser } from '../../Firebase/Firebase'
 
 export default function EditProfileView() {
 
-  const [profilePictureUrl, setProfileUrl] = useState(null);
-  const fileRef = useRef();
+  const [profileUrl, setProfileUrl] = useState(null);
+  const fileRef = useRef(null);
 
 
   /* Estas son las validaciones del formulario  de auntentificacion*/
@@ -45,11 +45,18 @@ export default function EditProfileView() {
         const imageData = fileReader.result;
 
         const res = await setUserProfilePicture(currentUser.uid, imageData);
-        console.log(res)
+        if (res) {
+          const tmpUser = { ...currentUser };
+          tmpUser.profilePicture = res.metadata.fullPath;
+          await updateUser(tmpUser);
+          setCurrentUser({ ...tmpUser });
+          const url = await getProfilePhotoUrl(currentUser.profilePicture);
+          setProfileUrl(url);
+        }
       }
     }
   }
-
+ 
 
   if (state !== 2) {
     return <AutProvider
@@ -69,7 +76,7 @@ export default function EditProfileView() {
         <h2>Edit Profile Info</h2>
         <div>
           <div>
-            <img src={profilePictureUrl} alt="" width={100} />
+            <img src={profileUrl} alt="" width={100} />
           </div>
           <div>
             <button

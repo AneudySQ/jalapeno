@@ -23,7 +23,6 @@ import {
     setDoc,
     deleteDoc,
 } from "firebase/firestore";
-import { async } from "q";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_APIKEY,
@@ -152,3 +151,14 @@ export async function setUserProfilePicture(uid, file) {
     }
 }
 
+export async function getProfilePhotoUrl(profilePicture) {
+    try {
+        const imageRef = (storage, profilePicture);
+
+        const url = await getDownloadURL(imageRef);
+
+        return url;
+    } catch (error) {
+        console.error(error);
+    }
+}
