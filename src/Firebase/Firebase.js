@@ -23,6 +23,7 @@ import {
     setDoc,
     deleteDoc,
 } from "firebase/firestore";
+import { async } from "q";
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_APIKEY,
@@ -37,8 +38,8 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = getFirestore();
-export const storage = getStorage();
+export const db = getFirestore(app);
+export const storage = getStorage(app);
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -136,6 +137,16 @@ export async function deleteCategory(docId) {
         const docRef = doc(db, 'Categories', docId);
         const res = await deleteDoc(docRef)
         return res;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function setUserProfilePicture(uid, file) {
+    try {
+        const imageRef = ref(storage, `images/${uid}`);
+        const resUpload = await uploadBytes(imageRef, file)
+        return resUpload;
     } catch (error) {
         console.error(error);
     }

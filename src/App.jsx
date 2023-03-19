@@ -33,7 +33,7 @@ function App() {
 
           <Route path='Login' element={<LoginView />} />
           <Route path='Dasboard' element={<DasboardView />} />
-          <Route path='Dasboard/profile' element={<EditProfileView />} />
+          <Route path='Profile' element={<EditProfileView />} />
           <Route path='/:username' element={<ChoouseUsernane />} />
           <Route path='signout' element={<SignOutView />} />
           <Route path='ChoouseUsernane' element={<ChoouseUsernane />} />

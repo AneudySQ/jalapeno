@@ -5,12 +5,12 @@ export default function DasboardWapper({ children }) {
         //Este es el menu que aparesera cuando para cuando la gente ya esta logueada
         <div>
 
-            <nav>
-                <div>Logo</div>
-                <Link to='/Buscadorhome' className="col-md-4">Buscadorhome</Link>
+            <nav className="m-2">
+                <Link to='/Buscadorhome' className="col-md-4 ">Buscadorhome</Link>
                 <Link to='/dasboard/Links' className="col-md-4">Links</Link>
                 <Link to='/dasboard' className="col-md-4">dasboard</Link>
                 <Link to='/Depuravionhtml' className="col-md-4">Deporavion</Link>
+                <Link to='/Profile' className="col-md-4">EditProfileView</Link>
             </nav>
             <div>{children}</div>
         </div>

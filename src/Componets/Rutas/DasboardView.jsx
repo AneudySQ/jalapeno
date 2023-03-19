@@ -17,7 +17,6 @@ export default function DasboardView() {
 
 
   /* Estas son las validaciones dl formulario */
-
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
     setState(2);
