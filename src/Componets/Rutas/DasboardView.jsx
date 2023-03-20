@@ -1,7 +1,7 @@
 import AutProvider from "../Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import DasboardWapper from "../DasboardWapper";
+import MenuWapper from "../MenuWapper";
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
 import Category from '../Category'
@@ -27,7 +27,7 @@ export default function DasboardView() {
     navigate('/login')
   }
 
-  function handleonUserNotloggedIn() {
+  function handleonUserNotloggedIn()
     navigate('/login');
   }
 
@@ -87,7 +87,7 @@ export default function DasboardView() {
   }
 
   return (
-    <DasboardWapper>
+    <MenuWapper>
       <div className="container margin_60 " >
         <section id="section-2">
           <div className="container">
@@ -138,7 +138,7 @@ export default function DasboardView() {
       </div>
 
 
-    </DasboardWapper>
+    </MenuWapper>
   );
 
 }

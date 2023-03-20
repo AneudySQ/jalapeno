@@ -1,7 +1,7 @@
 import React from "react";
 //import { db } from "../Firebase/Firebase";
 
-import DasboardWapper from "./DasboardWapper";
+import MenuWapper from "./MenuWapper";
 import LinkForm from "./LinkForm";
 
 
@@ -13,14 +13,14 @@ export const Links = () => {
     }
 
 
-    return (<DasboardWapper>
+    return (<MenuWapper>
         <div className="container">
             <h1>Creac tu menu</h1>
         </div>
 
         <LinkForm addOrEditCategory={addOrEditCategory } />
 
-    </DasboardWapper>
+    </MenuWapper>
     )
 };
 

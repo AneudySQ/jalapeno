@@ -1,6 +1,6 @@
 import React from 'react'
 import AutProvider from './AutProvider'
-import DasboardWapper from '../DasboardWapper'
+import MenuWapper from '../MenuWapper'
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react';
 
@@ -24,6 +24,8 @@ export default function EditProfileView() {
 
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
+    const url = await getProfilePhotoUrl(user.profilePicture)
+   // setProfileUrl(url)
     setState(2);
   }
   function handleonUserNotRegistered(user) {
@@ -77,7 +79,7 @@ export default function EditProfileView() {
 
 
   return (
-    <DasboardWapper>
+    <MenuWapper>
 
       <div className='container'>
         <h2>Edit Profile Info</h2>
@@ -100,6 +102,6 @@ export default function EditProfileView() {
         </div>
       </div>
 
-    </DasboardWapper>
+    </MenuWapper>
   )
 }

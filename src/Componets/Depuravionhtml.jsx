@@ -1,9 +1,9 @@
 import React from 'react'
-import DasboardWapper from './DasboardWapper'
+import MenuWapper from './MenuWapper'
 
 const Depuravionhtml = () => {
     return (
-        <DasboardWapper>
+        <MenuWapper>
 
 
             <div className="container margin_60">
@@ -669,7 +669,7 @@ const Depuravionhtml = () => {
 
 
 
-        </DasboardWapper >
+        </MenuWapper >
     )
 }
 
