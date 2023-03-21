@@ -58,7 +58,7 @@ export default function ChoouseUsernane() {
         </div>
 
         <div>
-          <button onClick={handleContinue}>Continue</button>
+          <button className="btn badge-dark m-3" onClick={handleContinue}>Continue</button>
         </div>
       </div>
     );
