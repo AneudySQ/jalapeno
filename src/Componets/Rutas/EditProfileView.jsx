@@ -1,6 +1,6 @@
 import React from 'react'
 import AutProvider from './AutProvider'
-import DasboardWapper from '../DasboardWapper'
+import MenuWapper from '../MenuWapper'
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react';
 
@@ -79,7 +79,7 @@ export default function EditProfileView() {
 
 
   return (
-    <DasboardWapper>
+    <MenuWapper>
 
       <div className='container'>
         <h2>Edit Profile Info</h2>
@@ -102,6 +102,6 @@ export default function EditProfileView() {
         </div>
       </div>
 
-    </DasboardWapper>
+    </MenuWapper>
   )
 }
