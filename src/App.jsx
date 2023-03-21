@@ -31,10 +31,10 @@ function App() {
           <Route path="/" element={<Index />} />
           <Route path='Login' element={<LoginView />} />
           <Route path='Dasboard' element={<DasboardView />} />
+          <Route path='ChoouseUsernane' element={<ChoouseUsernane />} />
           <Route path='Profile' element={<EditProfileView />} />
 {/*           <Route path='/:username' element={<PublicProfileview />} />
  */}          <Route path='signout' element={<SignOutView />} />
-          <Route path='ChoouseUsernane' element={<ChoouseUsernane />} />
           <Route path='Depuravionhtml' element={<Depuravionhtml />} />
         </Routes>
       </BrowserRouter>
