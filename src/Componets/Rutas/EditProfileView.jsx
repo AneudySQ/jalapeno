@@ -7,8 +7,8 @@ import { useState, useRef } from 'react';
 import {
   setUserProfilePicture,
   getProfilePhotoUrl,
-  updateUser, 
-  
+  updateUser,
+
 } from '../../Firebase/Firebase'
 
 export default function EditProfileView() {
@@ -24,8 +24,9 @@ export default function EditProfileView() {
 
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
+    const url = await getProfilePhotoUrl(user.profilePicture)
+    setProfileUrl(url)
     setState(2);
-    
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
