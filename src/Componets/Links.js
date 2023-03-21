@@ -20,7 +20,7 @@ export const Links = () => {
 
         <LinkForm addOrEditCategory={addOrEditCategory } />
 
-    </MenuWapper>
+    </>
     )
 };
 

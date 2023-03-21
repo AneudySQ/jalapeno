@@ -21,9 +21,9 @@ export const NavegadorLink = () => {
                     </div>
                     <button href="#" className="open_close" id="close_in"><i className="icon_close"></i></button>
                     <ul>
-                        <MenuWapper>
+                        <>
 
-                        </MenuWapper>
+                        </>
                     </ul>
                 </div>{/* End main-menu */}
             </nav>
