@@ -4,6 +4,7 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
 import Category from '../Category'
+import MenuWapper from "../MenuWapper";
 
 export default function DasboardView() {
   const navigate = useNavigate();
@@ -24,12 +25,11 @@ export default function DasboardView() {
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
-    
+
   }
 
   function handleonUserNotloggedIn() {
     navigate('/login');
-    
   }
 
   if (state === 0) {
@@ -88,7 +88,9 @@ export default function DasboardView() {
   }
 
   return (
-    <>
+    <MenuWapper>
+
+
       <div className="container margin_60 " >
         <section id="section-2">
           <div className="container">
@@ -137,9 +139,9 @@ export default function DasboardView() {
           </div>
         </section >
       </div>
+    </MenuWapper>
 
 
-    </>
   );
 
 }

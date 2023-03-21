@@ -48,23 +48,14 @@ export async function userExists(uid) {
 
 export async function existsUsername(username) {
     const users = [];
-    const docsRef = collection(db, 'users');
-    const q = query(docsRef, where("username", "==", username))
-    /*     const q = query(collection(db, "users"), where("username", "==", username));
-     */
+    const q = query(collection(db, "users"), where("username", "==", username));
 
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
         users.push(doc.data());
     });
-
-
-    /*   querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-          users.push(doc.data());
-      }); */
-
     return users.length > 0 ? users[0].uid : null;
 }
 

@@ -12,7 +12,7 @@ export default function ChoouseUsernane() {
 
 
   function handleUserLoggedIn(user) {
-    navigate('/dasboard');
+    navigate('/Dasboard');
   }
 
   function handleonUserNotRegistered(user) {
@@ -48,7 +48,7 @@ export default function ChoouseUsernane() {
 
   if (state === 3 || state === 5) {
     return (
-      <div>
+      <div className="container">
         <h1>Bienvenido {currentUser.displayName}</h1>
         <p>Favor elige un nombre de ususrio</p>
         {state === 5 ? <p> el nombre de usuario ya existe, escoge otro</p> : ""}
@@ -59,13 +59,15 @@ export default function ChoouseUsernane() {
 
         <div>
           <button className="btn badge-dark m-3" onClick={handleContinue}>Continue</button>
+
         </div>
       </div>
     );
   }
+  
   if (state === 6) {
     return (
-      <div>
+      <div className="container"> 
         <h1>Ya eres miembro, felicidades MMG</h1>
         <Link to="/Dasboard">Continuar</Link>
 

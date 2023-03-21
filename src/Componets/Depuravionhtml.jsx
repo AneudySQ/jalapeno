@@ -1,12 +1,13 @@
 import React from 'react'
+import MenuWapper from './MenuWapper'
 
 const Depuravionhtml = () => {
     return (
-        <>
-            <div>
+        <MenuWapper>
+            <div className='container'>
                 <h1>DEPURACION</h1>
             </div>
-        </>
+        </MenuWapper>
     )
 }
 

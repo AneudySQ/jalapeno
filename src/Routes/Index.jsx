@@ -3,6 +3,7 @@ import { Banner } from '../Componets/Banner'
 import { Buscadorhome } from '../Componets/Buscadorhome'
 import Header from '../Componets/Header'
 import { Topsrestaurant } from '../Componets/Topsrestaurant'
+import MenuWapper from '../Componets/MenuWapper'
 
 const Index = () => {
     return (
@@ -17,11 +18,12 @@ const Index = () => {
                 </div>
             </div>
 
-            <Header />
-            <Buscadorhome />
-            <Topsrestaurant />
-            <Banner />
-            <Footer />
+            <MenuWapper>
+                <Buscadorhome />
+                <Topsrestaurant />
+                <Banner />
+                <Footer />
+            </MenuWapper>
 
             <div className="layer">
             </div>{/* Mobile menu overlay mask */}

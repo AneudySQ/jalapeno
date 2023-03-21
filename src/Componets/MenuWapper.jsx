@@ -1,11 +1,20 @@
-import React from 'react'
+import { Link } from "react-router-dom";
 
-const MenuWapper = () => {
+export default function MenuWapper({ children }) {
   return (
+    //Este es el menu que aparesera cuando para cuando la gente ya esta logueada
     <div>
-      
+
+      <nav className="m-2">
+        <Link to='/' className="col-md-4 ">Buscadorhome</Link>
+        <Link to='/Dasboard' className="col-md-4">Dasboard</Link>
+        <Link to='/EditarPerfil' className="col-md-4">Editar Perfil</Link>
+        <Link to='/:username' className="col-md-4">Perfil Publico</Link>
+        <Link to='/Depuracion' className="col-md-4 ">Depurador</Link>
+
+      </nav>
+      <div>{children}</div>
     </div>
+
   )
 }
-
-export default MenuWapper

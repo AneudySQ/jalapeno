@@ -6,9 +6,10 @@ import { useState, useRef } from 'react';
 import {
   setUserProfilePicture,
   getProfilePhotoUrl,
-  updateUser, 
-  
+  updateUser,
+
 } from '../../Firebase/Firebase'
+import MenuWapper from '../MenuWapper';
 
 export default function EditProfileView() {
 
@@ -78,7 +79,7 @@ export default function EditProfileView() {
 
 
   return (
-    <>
+    <MenuWapper>
 
       <div className='container'>
         <h2>Edit Profile Info</h2>
@@ -101,6 +102,6 @@ export default function EditProfileView() {
         </div>
       </div>
 
-    </>
+    </MenuWapper>
   )
 }
