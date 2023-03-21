@@ -1,5 +1,4 @@
 import React from 'react'
-import MenuWapper from './MenuWapper'
 
 const Depuravionhtml = () => {
     return (

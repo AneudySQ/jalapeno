@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavLink } from "react-router-dom"
-import MenuWapper from './MenuWapper'
 
 export const NavegadorLink = () => {
     return (

@@ -1,6 +1,5 @@
 import React from 'react'
 import AutProvider from './AutProvider'
-import MenuWapper from '../MenuWapper'
 import { useNavigate } from 'react-router';
 import { useState, useRef } from 'react';
 

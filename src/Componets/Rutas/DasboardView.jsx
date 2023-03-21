@@ -1,7 +1,6 @@
 import AutProvider from "../Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import MenuWapper from "../MenuWapper";
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
 import Category from '../Category'
