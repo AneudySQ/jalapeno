@@ -6,12 +6,12 @@ export default function MenuWapper({ children }) {
         <div>
 
             <nav className="m-2">
-                <Link to='/Buscadorhome' className="col-md-4 ">Buscadorhome</Link>
-                <Link to='/dasboard/Links' className="col-md-4">Links</Link>
-                <Link to='/dasboard' className="col-md-4">Dasboard</Link>
-                <Link to='/Depuravionhtml' className="col-md-4">Deporavion</Link>
-                <Link to='/Profile' className="col-md-4">Editar Perfil</Link>
-                <Link to='/PublicProfileview' className="col-md-4">Perfil Publico</Link>
+                <Link to='/' className="col-md-4 ">Buscadorhome</Link>
+                <Link to='/Dasboard' className="col-md-4">Dasboard</Link>
+                <Link to='/EditarPerfil' className="col-md-4">Editar Perfil</Link>
+                <Link to='/:username' className="col-md-4">Perfil Publico</Link>
+                <Link to='/Depuracion' className="col-md-4 ">Depurador</Link>
+
             </nav>
             <div>{children}</div>
         </div>

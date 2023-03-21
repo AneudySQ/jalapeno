@@ -18,7 +18,6 @@ const Index = () => {
                     </div>
                 </div>
 
-                <Header />
                 <Buscadorhome />
                 <Topsrestaurant />
                 <Banner />
