@@ -25,6 +25,7 @@ export default function EditProfileView() {
   async function handleUserLoggedIn(user) {
     setCurrentUser(user);
     setState(2);
+    
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
