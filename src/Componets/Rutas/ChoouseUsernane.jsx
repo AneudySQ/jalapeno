@@ -12,7 +12,7 @@ export default function ChoouseUsernane() {
 
 
   function handleUserLoggedIn(user) {
-    navigate('/dasboard');
+    navigate('/Dasboard');
   }
 
   function handleonUserNotRegistered(user) {

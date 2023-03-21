@@ -31,7 +31,7 @@ function App() {
  */}
           <Route path='Login' element={<LoginView />} />
           <Route path='Dasboard' element={<DasboardView />} />
-          <Route path='Profile' element={<EditProfileView />} />
+          <Route path='EditarPerfil' element={<EditProfileView />} />
 {/*          // <Route path='/:username' element={<PublicProfileview />} />
  */}
           <Route path='signout' element={<SignOutView />} />

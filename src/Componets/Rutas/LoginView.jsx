@@ -51,13 +51,13 @@ export default function LoginView() {
   }
 
   function handleUserLoggedIn(user) {
-    navigate('/DasboardView');
+    navigate('/Dasboard');
   }
 
   function handleonUserNotRegistered(user) {
     //setCurrentUser(user);
     //setCurrentState(3);
-    navigate('/chooseusername');
+    navigate('/ChoouseUsernane');
   }
 
   function handleonUserNotLoggedIn() {
