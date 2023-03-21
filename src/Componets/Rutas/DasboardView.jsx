@@ -25,10 +25,12 @@ export default function DasboardView() {
   }
   function handleonUserNotRegistered(user) {
     navigate('/login')
+    
   }
 
-  function handleonUserNotloggedIn()
+  function handleonUserNotloggedIn() {
     navigate('/login');
+    
   }
 
   if (state === 0) {
