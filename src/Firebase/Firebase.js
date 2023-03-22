@@ -48,14 +48,15 @@ export async function userExists(uid) {
 
 export async function existsUsername(username) {
     const users = [];
-    const q = query(collection(db, "users"), where("username", "==", username));
+    const docsRef = collection(db, 'users')
+    const q = query(docsRef, where("username", "==", username));
 
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         users.push(doc.data());
     });
+
     return users.length > 0 ? users[0].uid : null;
 }
 
@@ -165,7 +166,7 @@ export async function getUserPublicProfileInfo(uid) {
     const profileInfo = await getUserInfo(uid);
     const CategoriesInfo = await getCategories(uid)
     return {
-        profileInfo: profileInfo,
+        profile: profileInfo,
         CategoriesInfo: CategoriesInfo,
-    }
+    };
 }

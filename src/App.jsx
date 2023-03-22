@@ -29,7 +29,7 @@ function App() {
           <Route path='/Login' element={<LoginView />} />
           <Route path='/Dasboard' element={<DasboardView />} />
           <Route path='/EditarPerfil' element={<EditProfileView />} />
-          <Route path='/:username' element={<PublicProfileview />} />
+          <Route path='u/:username' element={<PublicProfileview />} />
 
           <Route path='/signout' element={<SignOutView />} />
           <Route path='/ChoouseUsernane' element={<ChoouseUsernane />} />
