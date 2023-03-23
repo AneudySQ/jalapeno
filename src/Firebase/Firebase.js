@@ -166,7 +166,7 @@ export async function getUserPublicProfileInfo(uid) {
     const profileInfo = await getUserInfo(uid);
     const CategoriesInfo = await getCategories(uid)
     return {
-        profile: profileInfo,
+        profileInfo: profileInfo,
         CategoriesInfo: CategoriesInfo,
     };
 }

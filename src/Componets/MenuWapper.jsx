@@ -9,7 +9,7 @@ export default function MenuWapper({ children }) {
         <Link to='/' className="col-md-4 ">Buscadorhome</Link>
         <Link to='/Dasboard' className="col-md-4">Dasboard</Link>
         <Link to='/EditarPerfil' className="col-md-4">Editar Perfil</Link>
-        <Link to='/:username' className="col-md-4">Perfil Publico</Link>
+        <Link to='/u/:Aneudy' className="col-md-4">Perfil Publico</Link>
         <Link to='/Depuracion' className="col-md-4 ">Depurador</Link>
 
       </nav>
