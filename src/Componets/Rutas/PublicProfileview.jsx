@@ -7,6 +7,7 @@ import {
 } from '../../Firebase/Firebase'
 
 import MenuWapper from '../MenuWapper'
+import MenuPublico from '../MenuPublico'
 
 
 export default function PublicProfileview() {
@@ -32,7 +33,7 @@ export default function PublicProfileview() {
             userInfo.profileInfo.profilePicture
           );
           setUrl(url)
-        }else{
+        } else {
           setState(7)
         }
 
@@ -51,11 +52,20 @@ export default function PublicProfileview() {
 
   return (
     <MenuWapper>
-      <div className="container">
-        <div>
+      <div className="container m-5">
+        <div className="container">
           <img src={url} width={100} />
-          <h1>{profile?.profileInfo.username}</h1>
+          <h1 >@{profile?.profileInfo.username}</h1>
           <h1>{profile?.profileInfo.displayName}</h1>
+          <div>
+            {profile?.categoriesInfo.map((category)=>(
+              <MenuPublico
+                key={category.docId}
+                docId={category.docId}
+                title={category.title}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </MenuWapper>

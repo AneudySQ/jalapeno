@@ -164,9 +164,9 @@ export async function getProfilePhotoUrl(profilePicture) {
 
 export async function getUserPublicProfileInfo(uid) {
     const profileInfo = await getUserInfo(uid);
-    const CategoriesInfo = await getCategories(uid)
+    const categoriesInfo = await getCategories(uid)
     return {
         profileInfo: profileInfo,
-        CategoriesInfo: CategoriesInfo,
+        categoriesInfo: categoriesInfo,
     };
 }
