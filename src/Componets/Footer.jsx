@@ -78,7 +78,7 @@ export const Footer = () => {
                   </div>{/* End row */}
               </div>{/* End container */}
           </footer>
-          <div class="layer"></div>
+          <div className="layer"></div>
 
           {/* End Footer =============================================== */}
 

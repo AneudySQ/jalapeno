@@ -1,13 +1,17 @@
 import {
+  getAuth,
   GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup
+  FacebookAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth, userExists,  } from "../../Firebase/Firebase";
+import { auth, } from "../../Firebase/Firebase";
 import { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import AutProvider from "./AutProvider";
+
 
 
 
@@ -33,6 +37,7 @@ export default function LoginView() {
   const [state, setCurrentState] = useState(0);
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [esteRegistrando, setEstaregistrando] = useState(false)
 
 
 
@@ -51,8 +56,25 @@ export default function LoginView() {
     }
   }
 
+  async function handleOnclickFacebook() {
+    const facebookProvider = new FacebookAuthProvider();
+    await signInWithFacebook(facebookProvider);
+
+    async function signInWithFacebook(facebookrovider) {
+      try {
+        const res = await signInWithPopup(auth, facebookProvider);
+        console.log(res);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+
+
+
+  //Si el usuario ha iniciado sesion esta sesion
   function handleUserLoggedIn(user) {
-    navigate('/Dasboard');
+    navigate('/dasboard');
   }
 
   function handleonUserNotRegistered(user) {
@@ -75,21 +97,79 @@ export default function LoginView() {
     }
     */
 
+
   if (state === 4) {
+    //Inicio de secion con correo//
+    async function submitHandler(e) {
+      e.preventDefault();
+      const email = e.target.emailField.value;
+      const password = e.target.passwordField.value;
+      if (esteRegistrando) {
+        //Si se registra
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+      } else {
+        //Si esta iniciando Sesion
+        signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+      }
+    }
+
     return (
-      <div>
-        <button onClick={handleOnclick}>Login with Google</button>
+      <div className="container">
+        <div className="col-md-4 ">
+          <h3 className="center">{currentUser ? "Registrate" : " Inisia Sesion"}</h3>
+          {/*Formulario Iniciar sesion con correo */}
+          <form onSubmit={submitHandler}>
+            <div className="col align-self-center">
+              <input type="email" placeholder="Correo" id="emailField" />
+              <input type="password" placeholder="Contrasena" id="passwordField" />
+            </div>
+            <div className="col align-self-center">
+              <button type="submi">
+                {""} {currentUser ? "Registrate" : " Inisia Sesion"}{""}
+              </button>
+            </div>
+          </form>
+          {/* Iniciar sesion con Facebook o Google */}
+          <div className="col align-self-center">
+            <button onClick={handleOnclick}>Login with Google</button>
+            <button onClick={handleOnclickFacebook}>Login with Facebook</button>
+          </div>
+          <div className="col align-self-center">
+            <button onClick={() => setCurrentUser(!currentUser)}>
+              {""}
+              {currentUser ? "¿Ya tienes cuenta?" : " Registrate"}
+            </button>
+          </div>
+
+        </div>
       </div>
+
+
     );
+
+
   }
 
   if (state === 5) {
     return (
-      <div>
+
+      navigate("/index")
+
+/*       <div>
         <button onClick={handleOnclick}>Login with Google</button>
+        <button onClick={handleOnclickFacebook}>Login with Facebook</button>
       </div>
-    );
+ */    );
   }
+
 
 
   return (<AutProvider
@@ -100,6 +180,5 @@ export default function LoginView() {
     <div>Loading...</div>
   </AutProvider>
   );
+
 }
-
-

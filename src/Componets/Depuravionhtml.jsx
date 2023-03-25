@@ -5,7 +5,13 @@ const Depuravionhtml = () => {
     return (
         <MenuWapper>
             <div className='container'>
-                <h1>DEPURACION</h1>
+
+
+
+
+
+
+
             </div>
         </MenuWapper>
     )

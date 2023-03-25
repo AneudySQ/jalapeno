@@ -27,7 +27,7 @@ export const NavegadorLink = () => {
                 </div>{/* End main-menu */}
             </nav>
 
-            <div class="layer "></div>
+            <div className="layer "></div>
         </>
     )
 }
