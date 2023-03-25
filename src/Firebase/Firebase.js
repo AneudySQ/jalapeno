@@ -170,3 +170,7 @@ export async function getUserPublicProfileInfo(uid) {
         categoriesInfo: categoriesInfo,
     };
 }
+
+export async function logout() {
+    await auth.signOut();
+}

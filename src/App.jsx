@@ -6,11 +6,10 @@ import Admin from './Routes/Admin';
 import LoginView from './Componets/Rutas/LoginView';
 import DasboardView from './Componets/Rutas/DasboardView';
 import EditProfileView from './Componets/Rutas/EditProfileView';
-import SignOutView from './Componets/Rutas/SignOutView';
 import ChoouseUsernane from './Componets/Rutas/ChoouseUsernane';
 import PublicProfileview from './Componets/Rutas/PublicProfileview';
 import Depuravionhtml from './Componets/Depuravionhtml'
-
+import SignOut from './Componets/Rutas/SignOutView';
 
 
 
@@ -31,9 +30,9 @@ function App() {
           <Route path='/EditarPerfil' element={<EditProfileView />} />
           <Route path='u/:username' element={<PublicProfileview />} />
 
-          <Route path='/signout' element={<SignOutView />} />
           <Route path='/ChoouseUsernane' element={<ChoouseUsernane />} />
           <Route path='/Depuracion' element={<Depuravionhtml />} />
+          <Route path="/signout" element={<SignOut />} />
         </Routes>
       </BrowserRouter>
     </div>

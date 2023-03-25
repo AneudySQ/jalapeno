@@ -11,6 +11,7 @@ export default function MenuWapper({ children }) {
         <Link to='/EditarPerfil' className="col-md-4">Editar Perfil</Link>
         <Link to='/u/Aneudy' className="col-md-4">Perfil Publico</Link>
         <Link to='/Depuracion' className="col-md-4 ">Depurador</Link>
+        <Link to="/signout">Signout</Link>
 
       </nav>
       <div>{children}</div>
