@@ -12,6 +12,8 @@ export default function DasboardView() {
   const [state, setState] = useState(0);
 
   const [title, setTitle] = useState("");
+  const [order, setOrder] = useState("");
+  const [description, setDescription] = useState("");
   const [categories, setCategories] = useState([]);
 
 
@@ -53,34 +55,45 @@ export default function DasboardView() {
   }
 
   function addCategory() {
-    if (title !== "") {
+    if (title !== '' && order !== '') {
       const newCategory = {
         id: uuidv4(),
         title: title,
+        order: order,
+        description: description,
         uid: currentUser.uid,
-
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
       setTitle("");
+      setOrder("");
+      setDescription("");
       setCategories([...categories, newCategory]);
     }
   }
 
-
   function handleOnChange(e) {
     const value = e.target.value;
+    if (e.target.name === 'order') {
+      setOrder(value);
+    }
     if (e.target.name === 'title') {
       setTitle(value);
     }
+    if (e.target.name === 'description') {
+      setDescription(value);
+    }
   }
 
-  async function handlerUpdataCategory(docId, title) {
+
+  async function handlerUpdataCategory(docId, title, order, description) {
     const category = categories.find(item => item.docId === docId);
     category.title = title;
+    category.order = order;
+    category.description = description;
     await updateCategory(docId, category);
   }
-
+  /* Funcion para eliminar */
   async function handlerDeleteCategory(docId) {
     await deleteCategory(docId);
     const tmp = categories.filter(category => category.docId !== docId);
@@ -89,7 +102,6 @@ export default function DasboardView() {
 
   return (
     <MenuWapper>
-
 
       <div className="container margin_60 " >
         <section id="section-2">
@@ -107,6 +119,15 @@ export default function DasboardView() {
               <label htmlFor="title">Crea una Categoria a tu menu</label>
 
               <div className="input-group mb-3" >
+
+                <input
+                  type="number"
+                  name="order"
+                  className="form-control"
+                  placeholder="orden"
+                  onChange={handleOnChange}
+                />
+
                 <input
                   type="text"
                   name="title"
@@ -114,6 +135,15 @@ export default function DasboardView() {
                   placeholder="Ej. Platos fuertes"
                   onChange={handleOnChange}
                 />
+
+                <input
+                  type="text"
+                  name="description"
+                  className="form-control"
+                  placeholder="Pequeña description"
+                  onChange={handleOnChange}
+                />
+
                 {/* input para enviar formulario */}
                 <input
                   type="submit"
@@ -128,7 +158,6 @@ export default function DasboardView() {
             <div >
               {categories.map((category) => (
                 <Category
-                  key={category.docId}
                   docId={category.docId}
                   title={category.title}
                   onUpdata={handlerUpdataCategory}

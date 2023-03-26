@@ -58,11 +58,13 @@ export default function PublicProfileview() {
           <h1 >@{profile?.profileInfo.username}</h1>
           <h1>{profile?.profileInfo.displayName}</h1>
           <div>
-            {profile?.categoriesInfo.map((category)=>(
+            {profile?.categoriesInfo.map((category) => (
               <MenuPublico
                 key={category.docId}
                 docId={category.docId}
                 title={category.title}
+                order={category.order}
+                description={category.description}
               />
             ))}
           </div>

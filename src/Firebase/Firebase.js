@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import 'firebase/compat/auth'
+import { getAuth, FacebookAuthProvider } from "firebase/auth";
 
 import {
     getStorage,
@@ -38,6 +39,11 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+
+/* Facebook */
+const provider = new FacebookAuthProvider();
+export { provider }
+
 
 export async function userExists(uid) {
     const docRef = doc(db, 'users', uid);
@@ -99,7 +105,17 @@ export async function insertNewCategory(category) {
     }
 }
 
+/* export async function insertNewCategory(category) {
+    try {
+        const docRef = collection(db, 'Categories');
+        const res = await addDoc(docRef, category);
+        return res;
+    } catch (error) {
+        console.error(error);
+    }
+}
 
+ */
 /* Esta funcionn sube las categorias */
 export async function getCategories(uid) {
     const Categories = [];
@@ -109,7 +125,7 @@ export async function getCategories(uid) {
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            const category = { ...doc.data() };
+            const category = { ...doc.data()};
             category.docId = doc.id;
             Categories.push(category);
         });
