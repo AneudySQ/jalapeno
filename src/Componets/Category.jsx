@@ -39,7 +39,10 @@ export default function Category({ docId, order, title, description, onDelete, o
         setEditTitle(false)
         setEditDescription(false)
         onUpdata(docId, currentOrder, currentTitle, currentDescription);
+    }
 
+    function handleDelete() {
+        onDelete(docId)
     }
 
 
@@ -53,7 +56,6 @@ export default function Category({ docId, order, title, description, onDelete, o
                             <input ref={orderRef}
                                 value={currentOrder}
                                 onChange={handleChangeOrder}
-                                
                             />
                         </h4>
 
@@ -61,8 +63,6 @@ export default function Category({ docId, order, title, description, onDelete, o
                             <input ref={titleRef}
                                 value={currentTitle}
                                 onChange={handleChangeTitle}
-
-                                
                             />
                         </h4>
 
@@ -70,12 +70,15 @@ export default function Category({ docId, order, title, description, onDelete, o
                             <input ref={descriptionRef}
                                 value={currentDescription}
                                 onChange={handleChangeDescription}
-
                             />
                         </h4>
 
-                        <button type="button" onClick={Actualizar} className="btn btn btn-outline-primary btn-sm"><i className="icon_plus_alt"></i> Actualizar</button>
-
+                        <button
+                            type="button" onClick={Actualizar}
+                            className="btn btn btn-outline-primary btn-sm">
+                            <i className="icon-spin3"></i>
+                            Actualizar
+                        </button>
                     </>
                 ) : (
                     <div className="">
@@ -84,31 +87,39 @@ export default function Category({ docId, order, title, description, onDelete, o
                         <h4 className="m-2">{currentDescription}</h4>
 
                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-
                             <button
                                 type="button"
                                 className="btn btn-outline-warning btn-sm"
-                                onClick={handleEditTitle}
-
-                            >
-                                <i className="icon_plus_alt"></i>
+                                onClick={handleEditTitle}>
+                                <i className="icon_pencil"> </i>
                                 Editar
                             </button>
-
-                            <button type="button" className="btn btn-outline-danger btn-sm"><i className="icon_plus_alt"></i> Edliminar</button>
-                            <button type="button" className="btn btn-outline-success btn-sm">Agregar</button>
+                            <button
+                                type="button"
+                                onClick={handleDelete}
+                                className="btn btn-outline-danger btn-sm">
+                                <i className="icon-minus"> </i>
+                                Edliminar
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-outline-success btn-sm">
+                                Agregar
+                            </button>
                         </div>
-
-
                     </div>
-                )
-
-                }
-
+                )}
             </div>
-            <div className="container">
-                <div className="text-cente" >
-                    <h4>Agregar</h4>
+            <div className="container position-relative">
+                <div className=" " >
+                    <button
+                        className="btn btn-outline-success btn-sm "
+                    >
+                        <h5>
+                            <i className="icon-plus"> </i>
+                            Agregar
+                        </h5>
+                    </button>
                 </div>
             </div>
         </div>

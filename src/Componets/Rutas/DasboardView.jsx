@@ -85,7 +85,7 @@ export default function DasboardView() {
     }
   }
 
-
+  /* Funcion para actualizar las Categorias */
   async function handlerUpdataCategory(docId, title, order, description) {
     const category = categories.find(item => item.docId === docId);
     category.docId = docId;
@@ -94,6 +94,7 @@ export default function DasboardView() {
     category.description = description;
     await updateCategory(docId, category);
   }
+
   /* Funcion para eliminar */
   async function handlerDeleteCategory(docId) {
     await deleteCategory(docId);
@@ -178,20 +179,3 @@ export default function DasboardView() {
   );
 
 }
-
-
-
-/* 
-
-        <form action="" onSubmit={}>
-          <label htmlFor="title">Title</label>
-          <input type="text" name="title" onChange={handleOnChange} />
-
-          <label htmlFor="url">Url</label>
-          <input type="text" name="url" onChange={handleOnChange} />
-
-          <input type="submit" value="Crear nuevo Link" />
-
-        </form>
-
-*/
