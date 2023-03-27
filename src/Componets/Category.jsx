@@ -1,140 +1,117 @@
 import { useState, useRef, useEffect } from "react";
+export default function Category({ docId, order, title, description, onDelete, onUpdata }) {
+    const [currentOrder, setCurrenteOrder] = useState(order);
+    const [currentTitle, setCurrentTitle] = useState(title);
+    const [currentDescription, setCurrenteDescription] = useState(description);
 
-export default function Category({ docId, title, order, descrption, onDelete, onUpdata }) {
+    const [editOrder, setEditOrder] = useState(false);
+    const [editTitle, setEditTitle] = useState(false);
+    const [editDescription, setEditDescription] = useState(false);
 
-
-    const [currentCategoryTitle, setCurrentCategoryTitle] = useState(title);
-    const [currentCategoryOrder, setCurrentCategoryOrder] = useState(order);
-    const [currentCategoryDescrption, setCurrentCategoryDescrption] = useState(descrption);
-
-    const [editCategoryTitle, setEditCategoryTitle] = useState(false);
-    const [editCategoryOrder, setEditCategoryOrder] = useState(false);
-    const [editCategoryDescrption, setEditCategoryDescrption] = useState(false);
-
-    const namecategoryRef = useRef(null)
+    const orderRef = useRef(null);
+    const titleRef = useRef(null);
+    const descriptionRef = useRef(null);
 
     useEffect(() => {
-        if (namecategoryRef.current) {
-            namecategoryRef.current.focus();
+        if (titleRef.current && orderRef && descriptionRef) {
+            titleRef.current.focus()
+            orderRef.current.focus()
+            descriptionRef.current.focus()
         }
-    }, [editCategoryTitle])
-
-
-    function handlerBlurTitle(e) {
-        setEditCategoryTitle(false);
-        onUpdata(docId, currentCategoryTitle);
-    };
-
-    function handlerBlurOrder(e) {
-        setEditCategoryTitle(false);
-        onUpdata(docId, currentCategoryOrder);
-    };
-
-    function handlerBlurDescrption(e) {
-        setEditCategoryTitle(false);
-        onUpdata(docId, currentCategoryDescrption);
-    };
+    }, [editTitle, editOrder, editDescription]);
 
     function handleEditTitle() {
-        setEditCategoryTitle(true);
-    }
-
-    function handleEditOrder() {
-        setEditCategoryOrder(true);
-    }
-
-    function handleEditDescreption() {
-        setEditCategoryDescrption(true);
-    }
-
-    function handleChangeTitle(e) {
-        setCurrentCategoryTitle(e.target.value)
+        setEditTitle(true);
+        setEditOrder(true);
+        setEditDescription(true);
     }
     function handleChangeOrder(e) {
-        setCurrentCategoryOrder(e.target.value)
+        setCurrenteOrder(e.target.value);
     }
-    function handleChangeDescrption(e) {
-        setCurrentCategoryDescrption(e.target.value)
+    function handleChangeTitle(e) {
+        setCurrentTitle(e.target.value);
+    }
+    function handleChangeDescription(e) {
+        setCurrenteDescription(e.target.value);
+    }
+    function Actualizar(e) {
+        setEditOrder(false)
+        setEditTitle(false)
+        setEditDescription(false)
+        onUpdata(docId, currentOrder, currentTitle, currentDescription);
+
     }
 
-    function handleDelete() {
-        onDelete(docId);
-    }
+
 
     return (
-
-        <div className=" mb-2" key={docId} >
-            <div className="menu-item-section clearfix ">
-                <div >
-                    {editCategoryTitle ? (
-                        <>
-                            <input
-                                ref={namecategoryRef}
-                                value={currentCategoryTitle}
-                                onChange={handleChangeTitle}
-                                onBlur={handlerBlurTitle}
-                            />
-                            <input
-                                ref={namecategoryRef}
-                                value={currentCategoryOrder}
+        <div key={docId} className="container">
+            <div className="menu-item-section clearfix  ">
+                {editTitle && editOrder && editDescription ? (
+                    <>
+                        <h4 className="m-2">
+                            <input ref={orderRef}
+                                value={currentOrder}
                                 onChange={handleChangeOrder}
-                                onBlur={handlerBlurOrder}
+                                
                             />
-                            <input
-                                ref={namecategoryRef}
-                                value={currentCategoryDescrption}
-                                onChange={handleChangeDescrption}
-                                onBlur={handlerBlurDescrption}
+                        </h4>
+
+                        <h4 className="m-2">
+                            <input ref={titleRef}
+                                value={currentTitle}
+                                onChange={handleChangeTitle}
+
+                                
                             />
-                            <button><i className=" icon-check-1"></i> Actualizar</button>
+                        </h4>
 
-                        </>
-                    ) : (
-                        <div className="row container">
+                        <h4 className="m-2">
+                            <input ref={descriptionRef}
+                                value={currentDescription}
+                                onChange={handleChangeDescription}
 
-                            <div className="">
-                                {currentCategoryOrder}
-                                <button
-                                    className="btn"
-                                    onClick={handleEditOrder}>
-                                    <i className="icon-pencil ">
-                                    </i>
-                                </button>
+                            />
+                        </h4>
 
-                            </div>
+                        <button type="button" onClick={Actualizar} className="btn btn btn-outline-primary btn-sm"><i className="icon_plus_alt"></i> Actualizar</button>
 
-                            <div className=" col">
-                                {currentCategoryTitle}
-                                <button
-                                    className="btn"
-                                    onClick={handleEditTitle}>
-                                    <i className="icon-pencil ">
-                                    </i>
-                                </button>
-                            </div>
+                    </>
+                ) : (
+                    <div className="">
+                        <h4 className="m-2">{order}</h4>
+                        <h4 className="m-2">{title}</h4>
+                        <h4 className="m-2">{description}</h4>
 
-                            <div className="">
-                                {currentCategoryDescrption}
-                                <button
-                                    className="btn"
-                                    onClick={handleEditDescreption}>
-                                    <i className="icon-pencil ">
-                                    </i>
-                                </button>
+                        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                            </div>
+                            <button
+                                type="button"
+                                className="btn btn-outline-warning btn-sm"
+                                onClick={handleEditTitle}
 
-                            <div className="">
-                                <button onClick={handleDelete} className=" btn-danger btn">
-                                    <i className="icon_minus_alt" ></i> Eliminar</button>
+                            >
+                                <i className="icon_plus_alt"></i>
+                                Editar
+                            </button>
 
-                            </div>
+                            <button type="button" className="btn btn-outline-danger btn-sm"><i className="icon_plus_alt"></i> Edliminar</button>
+                            <button type="button" className="btn btn-outline-success btn-sm">Agregar</button>
                         </div>
-                    )}
+
+
+                    </div>
+                )
+
+                }
+
+            </div>
+            <div className="container">
+                <div className="text-cente" >
+                    <h4>Agregar</h4>
                 </div>
             </div>
         </div>
-
     );
 }
 
