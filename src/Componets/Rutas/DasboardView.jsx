@@ -87,7 +87,7 @@ export default function DasboardView() {
 
 
   async function handlerUpdataCategory(docId, title, order, description) {
-    const category = categories.find((item) => item.docId === docId);
+    const category = categories.find(item => item.docId === docId);
     category.docId = docId;
     category.title = title;
     category.order = order;
@@ -160,6 +160,7 @@ export default function DasboardView() {
               {categories.map((category) => (
                 <Category
                   key={category.docId}
+                  docId={category.docId}
                   order={category.order}
                   title={category.title}
                   description={category.description}

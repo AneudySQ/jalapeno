@@ -79,9 +79,9 @@ export default function Category({ docId, order, title, description, onDelete, o
                     </>
                 ) : (
                     <div className="">
-                        <h4 className="m-2">{order}</h4>
-                        <h4 className="m-2">{title}</h4>
-                        <h4 className="m-2">{description}</h4>
+                        <h4 className="m-2">{currentOrder}</h4>
+                        <h4 className="m-2">{currentTitle}</h4>
+                        <h4 className="m-2">{currentDescription}</h4>
 
                         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
 
