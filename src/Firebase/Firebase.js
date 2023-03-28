@@ -125,7 +125,7 @@ export async function getCategories(uid) {
         const querySnapshot = await getDocs(q);
 
         querySnapshot.forEach(doc => {
-            const category = { ...doc.data()};
+            const category = { ...doc.data() };
             category.docId = doc.id;
             Categories.push(category);
         });
@@ -190,3 +190,17 @@ export async function getUserPublicProfileInfo(uid) {
 export async function logout() {
     await auth.signOut();
 }
+
+
+/* Funciones para insertar nuevo Items */
+
+export async function insertNewItem(item) {
+    try {
+        const docRef = collection(db, 'Category', 'Items');
+        const res = await addDoc(docRef, item);
+        return res;
+    } catch (error) {
+        console.error(error);
+    }
+}
+

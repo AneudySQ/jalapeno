@@ -19,7 +19,7 @@ export default function DasboardView() {
 
 
   /* Estas son las validaciones dl formulario */
-  async function handleUserLoggedIn(user) {
+   async  function handleUserLoggedIn(user) {
     setCurrentUser(user);
     setState(2);
     const resCategories = await getCategories(user.uid);
@@ -65,9 +65,9 @@ export default function DasboardView() {
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
-      setTitle("");
-      setOrder("");
-      setDescription("");
+      setTitle('');
+      setOrder('');
+      setDescription('');
       setCategories([...categories, newCategory]);
     }
   }
@@ -167,13 +167,15 @@ export default function DasboardView() {
                   description={category.description}
                   onUpdata={handlerUpdataCategory}
                   onDelete={handlerDeleteCategory}
+                  handleUserLoggedIn={handleUserLoggedIn }
+
                 />
               ))}
             </div>
           </div>
         </section >
       </div>
-    </MenuWapper>
+    </MenuWapper    >
 
 
   );

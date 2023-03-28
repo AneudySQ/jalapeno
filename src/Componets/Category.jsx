@@ -1,5 +1,7 @@
+import AddItemInput from './AddItemInput';
 import { useState, useRef, useEffect } from "react";
-export default function Category({ docId, order, title, description, onDelete, onUpdata }) {
+
+export default function Category({ docId, order, title, description, onDelete, onUpdata, handleUserLoggedIn }) {
     const [currentOrder, setCurrenteOrder] = useState(order);
     const [currentTitle, setCurrentTitle] = useState(title);
     const [currentDescription, setCurrenteDescription] = useState(description);
@@ -7,6 +9,7 @@ export default function Category({ docId, order, title, description, onDelete, o
     const [editOrder, setEditOrder] = useState(false);
     const [editTitle, setEditTitle] = useState(false);
     const [editDescription, setEditDescription] = useState(false);
+
 
     const orderRef = useRef(null);
     const titleRef = useRef(null);
@@ -19,6 +22,8 @@ export default function Category({ docId, order, title, description, onDelete, o
             descriptionRef.current.focus()
         }
     }, [editTitle, editOrder, editDescription]);
+
+
 
     function handleEditTitle() {
         setEditTitle(true);
@@ -43,9 +48,8 @@ export default function Category({ docId, order, title, description, onDelete, o
 
     function handleDelete() {
         onDelete(docId)
+        alert("Quieres eliminar esta categoria?")
     }
-
-
 
     return (
         <div key={docId} className="container">
@@ -101,27 +105,13 @@ export default function Category({ docId, order, title, description, onDelete, o
                                 <i className="icon-minus"> </i>
                                 Edliminar
                             </button>
-                            <button
-                                type="button"
-                                className="btn btn-outline-success btn-sm">
-                                Agregar
-                            </button>
                         </div>
                     </div>
                 )}
             </div>
-            <div className="container position-relative">
-                <div className=" " >
-                    <button
-                        className="btn btn-outline-success btn-sm "
-                    >
-                        <h5>
-                            <i className="icon-plus"> </i>
-                            Agregar
-                        </h5>
-                    </button>
-                </div>
-            </div>
+            <AddItemInput
+                handleUserLoggedIn={handleUserLoggedIn}
+            />
         </div>
     );
 }
