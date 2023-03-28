@@ -1,21 +1,17 @@
-import { useState } from "react";
 import AutProvider from "../Componets/Rutas/AutProvider";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewItem } from "../Firebase/Firebase";
-
-
-
-
+import { insertNewItem, } from "../Firebase/Firebase";
 
 export default function AddItemInput() {
-
+    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
-    const [titleItem, setTitleItem] = useState('')
-    const [priceItem, setPriceItem] = useState('')
-    const [photoItem, setPhotoItem] = useState('')
-    const [descriptionItem, setDescriptionItem] = useState('')
-    const [Items, setItems] = useState([])
+
+    const [titleItem, setTitleitem] = useState("");
+    const [items, setItems] = useState([]);
+
 
 
     /* Estas son las validaciones dl formulario */
@@ -23,81 +19,80 @@ export default function AddItemInput() {
         setCurrentUser(user);
         setState(2);
     }
+    function handleonUserNotRegistered(user) {
+        navigate('/login')
+
+    }
+
+    function handleonUserNotloggedIn() {
+        navigate('/login');
+    }
 
     if (state === 0) {
         return (
             <AutProvider
                 onUserLoggedIn={handleUserLoggedIn}
+                onUserNotloggedIn={handleonUserNotloggedIn}
+                onUserNotRegistered={handleonUserNotRegistered}
             >
             </AutProvider>
         );
     }
 
+
+    /* Aqui comienzan las funciones para el formulario */
+
+
     function handleOnSubmit(e) {
         e.preventDefault();
-        addItem();
+        addItems();
     }
 
-    function addItem() {
-        if (titleItem === '') {
+    function addItems() {
+        if (titleItem !== '') {
             const newItem = {
                 id: uuidv4(),
-                nameItem: titleItem,
-/*              description:description,
-                price: price,
-                photo: photo,
- */             uid: currentUser.uid,
-            }
+                titleItem: titleItem,
+                uid: currentUser.uid,
+            };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
-            setTitleItem('');
-/*          setDescriptionItem('');
-            setPriceItem('');
-            setPhotoItem('');
- */         setItems([...Items, newItem])
+            setTitleitem('');
+            setItems([...items, newItem]);
         }
     }
 
     function handleOnChange(e) {
         const value = e.target.value;
         if (e.target.name === 'nameItem') {
-            setTitleItem(value);
+            setTitleitem(value);
         }
-/*         if (e.target.name === 'nameItem') {
-            setPriceItem(value);
-        }
-        if (e.target.name === 'nameItem') {
-            setPhotoItem(value);
-        }
-        if (e.target.name === 'nameItem') {
-            setDescriptionItem(value);
-        }
- */    }
+    }
 
     return (
-        <div>
-            <div className="container position-relative">
-                <div className=" " >
-                    <form action="" onSubmit={handleOnSubmit}>
-                        <div className="input-group mb-3">
-                            <input
-                                type="text" className="form-control"
-                                placeholder="Escribe el nombre de tu platillo"
-                                name="nameItem"
-                                onChange={handleOnChange}
-                            />
-                            <div className="input-group-append">
+
+            <div className="container margin_60 " >
+
+
+                        {/* input para agregar categoria */}
+                        <form action="" onSubmit={handleOnSubmit}>
+
+                            <div className="input-group mb-3" >
                                 <input
-                                    className="btn btn-outline-secondary"
-                                    type="submit" value="crear items"
+                                    type="number"
+                                    name="nameItem"
+                                    className="form-control"
+                                    placeholder="orden"
+                                    onChange={handleOnChange}
                                 />
                             </div>
-                        </div>
-                    </form>
-                </div>
+
+                        </form>
+
+
             </div>
 
-        </div>
-    )
-}
 
+    );
+
+}
