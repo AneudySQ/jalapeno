@@ -71,26 +71,31 @@ export default function AddItemInput() {
 
     return (
 
-            <div className="container margin_60 " >
+        <div className="container  " >
 
 
-                        {/* input para agregar categoria */}
-                        <form action="" onSubmit={handleOnSubmit}>
+            {/* input para agregar categoria */}
+            <form action="" onSubmit={handleOnSubmit}>
 
-                            <div className="input-group mb-3" >
-                                <input
-                                    type="number"
-                                    name="nameItem"
-                                    className="form-control"
-                                    placeholder="orden"
-                                    onChange={handleOnChange}
-                                />
-                            </div>
+                <div className="input-group mb-3">
+                    <input
+                        type="text" className="form-control"
+                        placeholder="Escribe el nombre de tu platillo"
+                        name="nameItem"
+                        onChange={handleOnChange}
+                    />
+                    <div className="input-group-append">
+                        <input
+                            className="btn btn-outline-secondary"
+                            type="submit" value="crear items"
+                        />
+                    </div>
+                </div>
 
-                        </form>
+            </form>
 
 
-            </div>
+        </div>
 
 
     );

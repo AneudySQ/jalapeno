@@ -196,7 +196,7 @@ export async function logout() {
 
 export async function insertNewItem(item) {
     try {
-        const docRef = collection(db, 'Category', 'Items');
+        const docRef = collection(db, 'Items');
         const res = await addDoc(docRef, item);
         return res;
     } catch (error) {
