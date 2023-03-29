@@ -2,7 +2,7 @@ import AutProvider from "../Componets/Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewItem, } from "../Firebase/Firebase";
+import { insertNewItem, getItems } from "../Firebase/Firebase";
 
 export default function AddItemInput() {
     const navigate = useNavigate();
@@ -18,6 +18,9 @@ export default function AddItemInput() {
     async function handleUserLoggedIn(user) {
         setCurrentUser(user);
         setState(2);
+        const resItems = await getItems(user.uid);
+        setItems([...resItems]);
+
     }
     function handleonUserNotRegistered(user) {
         navigate('/login')
@@ -73,9 +76,11 @@ export default function AddItemInput() {
 
         <div className="container  " >
 
-
             {/* input para agregar categoria */}
-            <form action="" onSubmit={handleOnSubmit}>
+
+            <form action=""
+                onSubmit={handleOnSubmit}
+                className="container">
 
                 <div className="input-group mb-3">
                     <input
@@ -84,15 +89,26 @@ export default function AddItemInput() {
                         name="nameItem"
                         onChange={handleOnChange}
                     />
-                    <div className="input-group-append">
+                    <div className="  input-group-append">
                         <input
                             className="btn btn-outline-secondary"
-                            type="submit" value="crear items"
+                            type="submit" value="crear"
                         />
                     </div>
                 </div>
 
             </form>
+
+            <div className=" container">
+                {
+                    items.map(item => (
+                        <div className="" key={item.id}>
+                            <h1>{item.titleItem}</h1>
+                        </div>
+                    ))
+                }
+
+            </div>
 
 
         </div>

@@ -94,10 +94,11 @@ export async function getUserInfo(uid) {
     } catch (error) { }
 }
 
+/* Insertar Nueva categoria */
 
 export async function insertNewCategory(category) {
     try {
-        const docRef = collection(db, 'Categories');
+        const docRef = collection(db, "Categories", "Restaurant", "Menu");
         const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
@@ -105,22 +106,12 @@ export async function insertNewCategory(category) {
     }
 }
 
-/* export async function insertNewCategory(category) {
-    try {
-        const docRef = collection(db, 'Categories');
-        const res = await addDoc(docRef, category);
-        return res;
-    } catch (error) {
-        console.error(error);
-    }
-}
 
- */
 /* Esta funcionn sube las categorias */
 export async function getCategories(uid) {
     const Categories = [];
     try {
-        const collectionRef = collection(db, 'Categories');
+        const collectionRef = collection(db, "Categories", "Restaurant", "Menu");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -137,6 +128,8 @@ export async function getCategories(uid) {
 
     }
 }
+
+
 export async function updateCategory(docId, category) {
     try {
         const docRef = doc(db, 'Categories', docId);
@@ -192,15 +185,40 @@ export async function logout() {
 }
 
 
-/* Funciones para insertar nuevo Items */
+/* Funciones para insertar nuevo Items dentro de la coleccion  Categories */
 
 export async function insertNewItem(item) {
     try {
-        const docRef = collection(db, 'Items');
+        const docRef = collection(db, "Categories", "Restaurant", "Menu");
         const res = await addDoc(docRef, item);
+
         return res;
     } catch (error) {
         console.error(error);
     }
 }
+
+/* Esta funcionn sube las Items */
+export async function getItems(uid) {
+    const Items = [];
+    try {
+        const collectionRef = collection(db, "Categories", "Restaurant", "Menu");
+        const q = query(collectionRef, where('uid', '==', uid));
+        const querySnapshot = await getDocs(q);
+
+        querySnapshot.forEach(doc => {
+            const Item = { ...doc.data() };
+            Item.docId = doc.id;
+            Items.push(Item);
+        });
+
+        return Items;
+
+    } catch (error) {
+        console.error(error);
+
+    }
+}
+
+
 

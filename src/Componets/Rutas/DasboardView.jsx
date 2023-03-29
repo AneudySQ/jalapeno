@@ -68,7 +68,7 @@ export default function DasboardView() {
       setTitle('');
       setOrder('');
       setDescription('');
-      setCategories([...categories, newCategory]);
+      setCategories([...categories,  newCategory]);
     }
   }
 
