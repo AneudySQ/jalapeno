@@ -187,10 +187,10 @@ export async function logout() {
 
 /* Funciones para insertar nuevo Items dentro de la coleccion  Categories */
 
-export async function insertNewItem(item) {
+export async function insertNewItem(Item) {
     try {
         const docRef = collection(db, "Categories", "Restaurant", "Menu");
-        const res = await addDoc(docRef, item);
+        const res = addDoc(doc(docRef), Item);
 
         return res;
     } catch (error) {

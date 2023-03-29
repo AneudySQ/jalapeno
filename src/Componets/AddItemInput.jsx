@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems } from "../Firebase/Firebase";
+import Item from "../Componets/Item"
 
 export default function AddItemInput() {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
 
-    const [titleItem, setTitleitem] = useState("");
+    const [titleItem, setTitleItem] = useState("");
+    const [priceItem, setPriceItem] = useState("");
+    const [descriptionItem, setDescriptionItem] = useState("");
+    const [photoItem, setPhotoItem] = useState("");
     const [items, setItems] = useState([]);
 
 
@@ -55,12 +59,18 @@ export default function AddItemInput() {
         if (titleItem !== '') {
             const newItem = {
                 id: uuidv4(),
-                titleItem: titleItem,
                 uid: currentUser.uid,
+                titleItem: titleItem,
+                priceItem: priceItem,
+                photoItem: photoItem,
+                descriptionItem: descriptionItem,
             };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
-            setTitleitem('');
+            setTitleItem('');
+            setPriceItem('');
+            setDescriptionItem('');
+            setPhotoItem('');
             setItems([...items, newItem]);
         }
     }
@@ -68,8 +78,23 @@ export default function AddItemInput() {
     function handleOnChange(e) {
         const value = e.target.value;
         if (e.target.name === 'nameItem') {
-            setTitleitem(value);
+            setTitleItem(value);
         }
+        if (e.target.name === 'priceItem') {
+            setPriceItem(value);
+        }
+        if (e.target.name === 'descriptionItem') {
+            setDescriptionItem(value);
+        }
+        if (e.target.name === 'photoItem') {
+            setPhotoItem(value);
+        }
+    }
+    function handleUpdateItem() {
+
+    }
+    function handleDeleteItem() {
+
     }
 
     return (
@@ -89,7 +114,27 @@ export default function AddItemInput() {
                         name="nameItem"
                         onChange={handleOnChange}
                     />
-                    <div className="  input-group-append">
+
+{/*                     <input
+                        type="text" className="form-control"
+                        placeholder="Escribe el nombre de tu platillo"
+                        name="priceItem"
+                        onChange={handleOnChange}
+                    />
+                    <input
+                        type="text" className="form-control"
+                        placeholder="Escribe el nombre de tu platillo"
+                        name="descriptionItem"
+                        onChange={handleOnChange}
+                    />
+                    <input
+                        type="text" className="form-control"
+                        placeholder="Escribe el nombre de tu platillo"
+                        name="photoItem"
+                        onChange={handleOnChange}
+                    />
+                    
+ */}                    <div className="  input-group-append">
                         <input
                             className="btn btn-outline-secondary"
                             type="submit" value="crear"
@@ -100,13 +145,17 @@ export default function AddItemInput() {
             </form>
 
             <div className=" container">
-                {
-                    items.map(item => (
-                        <div className="" key={item.id}>
-                            <h1>{item.titleItem}</h1>
-                        </div>
-                    ))
-                }
+                {items.map(item => (
+                    <Item
+                        key={item.docId}
+                        nameItem={item.titleItem}
+                        priceItem={item.priceItem}
+                        descriptionItem={item.descriptionItem}
+                        photoItem={item.photoItem}
+                        onUpdate={handleDeleteItem}
+                        onDelete={handleUpdateItem}
+                    />
+                ))}
 
             </div>
 
