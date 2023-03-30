@@ -96,9 +96,9 @@ export async function getUserInfo(uid) {
 
 /* Insertar Nueva categoria */
 
-export async function insertNewCategory(category) {
+export async function insertNewCategory(category,) {
     try {
-        const docRef = collection(db, "Categories", "Restaurant", "Menu");
+        const docRef = collection(db, "Categories");
         const res = await addDoc(docRef, category);
         return res;
     } catch (error) {
@@ -111,7 +111,7 @@ export async function insertNewCategory(category) {
 export async function getCategories(uid) {
     const Categories = [];
     try {
-        const collectionRef = collection(db, "Categories", "Restaurant", "Menu");
+        const collectionRef = collection(db, "Categories");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -189,8 +189,8 @@ export async function logout() {
 
 export async function insertNewItem(Item) {
     try {
-        const docRef = collection(db, "Categories", "Restaurant", "Menu");
-        const res = addDoc(doc(docRef), Item);
+        const docRef = collection(db, "Prueba");
+        const res = await addDoc(docRef, Item);
 
         return res;
     } catch (error) {
@@ -202,7 +202,7 @@ export async function insertNewItem(Item) {
 export async function getItems(uid) {
     const Items = [];
     try {
-        const collectionRef = collection(db, "Categories", "Restaurant", "Menu");
+        const collectionRef = collection(db, "Prueba");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -220,5 +220,16 @@ export async function getItems(uid) {
     }
 }
 
+export async function updateItem(docId, item) {
+    try {
+        const docRef =doc(db, 'Prueba', docId)
+        const res = await setDoc(docRef, item)
+        return res;
+    } catch (error) {
+
+        console.error(error);
+    }
+
+}
 
 

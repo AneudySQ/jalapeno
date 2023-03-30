@@ -2,7 +2,7 @@ import AutProvider from "../Componets/Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewItem, getItems } from "../Firebase/Firebase";
+import { insertNewItem, getItems, updateItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
 export default function AddItemInput() {
@@ -77,7 +77,7 @@ export default function AddItemInput() {
 
     function handleOnChange(e) {
         const value = e.target.value;
-        if (e.target.name === 'nameItem') {
+        if (e.target.name === 'titleItem') {
             setTitleItem(value);
         }
         if (e.target.name === 'priceItem') {
@@ -90,11 +90,15 @@ export default function AddItemInput() {
             setPhotoItem(value);
         }
     }
-    function handleUpdateItem() {
-
-    }
     function handleDeleteItem() {
 
+    }
+    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem) {
+        const item = items.find(item => item.docId ===docId)
+        item.titleItem = titleItem;
+        item.priceItem = priceItem;
+        item.descriptionItem = descriptionItem;
+        await updateItem(docId, item);
     }
 
     return (
@@ -111,7 +115,7 @@ export default function AddItemInput() {
                     <input
                         type="text" className="form-control"
                         placeholder="Escribe el nombre de tu platillo"
-                        name="nameItem"
+                        name="titleItem"
                         onChange={handleOnChange}
                     />
 
@@ -148,12 +152,14 @@ export default function AddItemInput() {
                 {items.map(item => (
                     <Item
                         key={item.docId}
-                        nameItem={item.titleItem}
+                        docId={item.docId}
+                        titleItem={item.titleItem}
                         priceItem={item.priceItem}
                         descriptionItem={item.descriptionItem}
                         photoItem={item.photoItem}
-                        onUpdate={handleDeleteItem}
-                        onDelete={handleUpdateItem}
+                        onUpdate={handleUpdateItem}
+                        onDelete={handleDeleteItem}
+                        
                     />
                 ))}
 
