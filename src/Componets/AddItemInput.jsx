@@ -2,7 +2,7 @@ import AutProvider from "../Componets/Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
-import { insertNewItem, getItems, updateItem } from "../Firebase/Firebase";
+import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
 export default function AddItemInput() {
@@ -90,9 +90,14 @@ export default function AddItemInput() {
             setPhotoItem(value);
         }
     }
-    function handleDeleteItem() {
-
+   async function handleDeleteItem(docId) {
+        await deleteItem(docId);
+        const tmp = items.filter(item => item.docId !== docId)
+        setItems([...tmp])
     }
+
+
+
     async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem) {
         const item = items.find(item => item.docId ===docId)
         item.titleItem = titleItem;

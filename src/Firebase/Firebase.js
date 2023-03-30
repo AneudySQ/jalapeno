@@ -222,7 +222,7 @@ export async function getItems(uid) {
 
 export async function updateItem(docId, item) {
     try {
-        const docRef =doc(db, 'Prueba', docId)
+        const docRef = doc(db, 'Prueba', docId)
         const res = await setDoc(docRef, item)
         return res;
     } catch (error) {
@@ -232,4 +232,37 @@ export async function updateItem(docId, item) {
 
 }
 
+export async function deleteItem(docId) {
+    try {
+        const docRef = doc(db, 'Prueba', docId);
+        const res = await deleteDoc(docRef);
+        return res;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+/* Funcion para subior fotos */
+export async function setPhotoItem(uid, file) {
+    try {
+        const imageRef = ref(storage, `images/ItemsPicture/${uid}`)
+        const resUpload = await uploadBytes(imageRef, file);
+        return resUpload;
+    } catch (error) {
+        console.error(error)
+    }
+
+}
+
+export async function getPhotoItem(photoItem) {
+    try {
+        const imageRef = ref(storage,  photoItem);
+        const url = await getDownloadURL(imageRef);
+        return url;
+
+    } catch (error) {
+        console.error(error)
+     }
+}
 

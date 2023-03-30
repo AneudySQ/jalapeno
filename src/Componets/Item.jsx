@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import PhotoImten from "./PhotoImten"
 export default function Item({ docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
     const [currentNameItem, setCurrentNameItem] = useState(titleItem)
     const [currentpriceItem, setCurrentPriceItem] = useState(priceItem)
@@ -9,6 +10,8 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
     const [editpriceItem, setEditPriceItem] = useState(false)
     const [editdescriptionItem, setEditDescriptionItem] = useState(false)
     //const [editphotoItem, setEditPhotoItem] = useState(false)
+
+    const [imgItem, setImgItem] = useState(null)
 
 
     const NameItemRef = useRef(null);
@@ -78,14 +81,21 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
             currentpriceItem);
     }
 
+    function handleDeleteItem() {
+        onDelete(docId);
+
+    }
+
 
     return (
         <div key={docId}>
             <div className="menu-item-section clearfix">
                 <h4>{currentNameItem}</h4>
                 <div>
-                    <button className="btn">
-                        <i className="icon-cancel-5"></i>
+                    <button
+                        onClick={handleDeleteItem}
+                        className="btn">
+                        <i className="icon-cancel-5">Eliminar</i>
                     </button>
                 </div>
             </div>
@@ -93,11 +103,7 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
             <div className="strip_menu_items">
                 <div className="row">
                     <div className="col-md-3">
-                        <div className="menu-item-pic dropzone">
-                            <input name="file" type="file" />
-                            <div className="dz-default dz-message">{photoItem}<span>Click or Drop<br />Images Here</span>
-                            </div>
-                        </div>
+                        <PhotoImten />
                     </div>
                     <div className="col-md-9">
                         <div className="row">
