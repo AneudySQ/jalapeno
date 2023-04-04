@@ -15,7 +15,7 @@ export default function PhotoImten({ ItemId }) {
     /* Estas son las validaciones dl formulario */
     async function handleUserLoggedIn(user) {
         setCurrentUser(user);
-        const url = await getPhotoItem(user.photoItem, );
+        const url = await getPhotoItem(user.photoItem,);
         setpictureItem(url)
         setState(2);
     }
@@ -39,7 +39,7 @@ export default function PhotoImten({ ItemId }) {
                     tmpUser.photoItem = res.metadata.fullPath;
                     await updateUser(tmpUser)
                     setCurrentUser({ ...tmpUser })
-                    const url = await getPhotoItem(currentUser.photoItem);
+                    const url = await getPhotoItem(currentUser.photoItem, ItemId);
                     setpictureItem(url)
                 }
             };

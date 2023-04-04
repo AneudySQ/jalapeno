@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { uuidv4 } from "@firebase/util";
 import 'firebase/compat/auth'
 import { getAuth, FacebookAuthProvider } from "firebase/auth";
+
+import { uuidv4 } from "@firebase/util";
 
 import {
     getStorage,
@@ -250,9 +251,9 @@ export async function deleteItem(docId) {
 
 
 /* Funcion para subior fotos */
-export async function setPhotoItem( uid, file, ItemId) {
+export async function setPhotoItem(uid, file, ItemId, username) {
     try {
-        const imageRef = ref(storage, `images/ItemsPicture/${uuidv4() }`)
+        const imageRef = ref(storage, `images/ItemsPicture/${ItemId}`)
         const resUpload = await uploadBytes(imageRef, file);
         return resUpload;
     } catch (error) {
@@ -261,14 +262,26 @@ export async function setPhotoItem( uid, file, ItemId) {
 
 }
 
-export async function getPhotoItem(photoItem) {
+
+
+
+
+export async function getPhotoItem(ItemId) {
     try {
-        const imageRef = ref(storage, photoItem);
+        const imageRef = ref(storage, ItemId);
         const url = await getDownloadURL(imageRef);
         return url;
 
     } catch (error) {
         console.error(error)
     }
+}
+
+ export async function uploadFiles(files) {
+     const storageRef = ref(storage, uuidv4())
+    
+     await uploadBytes(storageRef, files)
+     const url = await getDownloadURL(storageRef)
+     return  url
 }
 

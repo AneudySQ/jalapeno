@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react"
+import Img from "./Img"
 import PhotoImten from "./PhotoImten"
 export default function Item({ ItemId, docIdCategory, docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
     const [currentNameItem, setCurrentNameItem] = useState(titleItem)
@@ -106,6 +107,7 @@ export default function Item({ ItemId, docIdCategory, docId, titleItem, priceIte
                         <PhotoImten
                             ItemId={ItemId}
                         />
+                        <Img />
                     </div>
                     <div className="col-md-9">
                         <div className="row">
