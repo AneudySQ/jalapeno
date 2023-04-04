@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import {  onAuthStateChanged  } from "firebase/auth";
 import { auth, getUserInfo, registerNewUser, userExists } from "../../Firebase/Firebase";
 import { useEffect, useState } from "react";
 

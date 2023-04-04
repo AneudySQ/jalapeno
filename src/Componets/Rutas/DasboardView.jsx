@@ -1,6 +1,6 @@
 import AutProvider from "../Rutas/AutProvider";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { insertNewCategory, getCategories, updateCategory, deleteCategory } from "../../Firebase/Firebase";
 import Category from '../Category'
@@ -17,12 +17,11 @@ export default function DasboardView() {
   const [categories, setCategories] = useState([]);
 
 
-
   /* Estas son las validaciones dl formulario */
-   async  function handleUserLoggedIn(user) {
+  async function handleUserLoggedIn(user, ) {
     setCurrentUser(user);
     setState(2);
-    const resCategories = await getCategories(user.uid);
+    const resCategories = await getCategories(user.uid, );
     setCategories([...resCategories]);
   }
   function handleonUserNotRegistered(user) {
@@ -52,23 +51,27 @@ export default function DasboardView() {
   function handleOnSubmit(e) {
     e.preventDefault();
     addCategory();
+    e.target.reset();
+
+
   }
 
   function addCategory() {
-    if (title !== '' && order !== '') {
+    if (title !== '') {
       const newCategory = {
         id: uuidv4(),
         title: title,
         order: order,
         description: description,
         uid: currentUser.uid,
+        username: currentUser.username,
       };
       const res = insertNewCategory(newCategory);
       newCategory.docId = res.id;
       setTitle('');
       setOrder('');
       setDescription('');
-      setCategories([...categories,  newCategory]);
+      setCategories([...categories, newCategory, ]);
     }
   }
 
@@ -92,7 +95,7 @@ export default function DasboardView() {
     category.title = title;
     category.order = order;
     category.description = description;
-    await updateCategory(docId, category);
+    await updateCategory(docId, category,);
   }
 
   /* Funcion para eliminar */
@@ -120,16 +123,7 @@ export default function DasboardView() {
             <form action="" onSubmit={handleOnSubmit}>
               <label htmlFor="title">Crea una Categoria a tu menu</label>
 
-              <div className="input-group mb-3" >
-
-                <input
-                  type="number"
-                  name="order"
-                  className="form-control"
-                  placeholder="orden"
-                  onChange={handleOnChange}
-                />
-
+              <div className="input-group mb-3">
                 <input
                   type="text"
                   name="title"
@@ -138,19 +132,12 @@ export default function DasboardView() {
                   onChange={handleOnChange}
                 />
 
-                <input
-                  type="text"
-                  name="description"
-                  className="form-control"
-                  placeholder="Pequeña description"
-                  onChange={handleOnChange}
-                />
-
                 {/* input para enviar formulario */}
+
                 <input
                   type="submit"
                   value="Crear Categoria"
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-secondary"
                 />
               </div>
 
@@ -160,6 +147,7 @@ export default function DasboardView() {
             <div >
               {categories.map((category) => (
                 <Category
+                  docIdCategory={category.id}
                   key={category.docId}
                   docId={category.docId}
                   order={category.order}
@@ -167,7 +155,7 @@ export default function DasboardView() {
                   description={category.description}
                   onUpdata={handlerUpdataCategory}
                   onDelete={handlerDeleteCategory}
-                  handleUserLoggedIn={handleUserLoggedIn }
+                  handleUserLoggedIn={handleUserLoggedIn}
 
                 />
               ))}

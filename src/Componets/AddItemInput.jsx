@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput() {
+export default function AddItemInput({ docIdCategory }) {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -18,11 +18,13 @@ export default function AddItemInput() {
 
 
 
+
+
     /* Estas son las validaciones dl formulario */
     async function handleUserLoggedIn(user) {
         setCurrentUser(user);
         setState(2);
-        const resItems = await getItems(user.uid);
+        const resItems = await getItems(user.uid, docIdCategory);
         setItems([...resItems]);
 
     }
@@ -53,11 +55,13 @@ export default function AddItemInput() {
     function handleOnSubmit(e) {
         e.preventDefault();
         addItems();
+        e.target.reset();
     }
 
     function addItems() {
         if (titleItem !== '') {
             const newItem = {
+                docIdCategory: docIdCategory,
                 id: uuidv4(),
                 uid: currentUser.uid,
                 titleItem: titleItem,
@@ -90,7 +94,7 @@ export default function AddItemInput() {
             setPhotoItem(value);
         }
     }
-   async function handleDeleteItem(docId) {
+    async function handleDeleteItem(docId) {
         await deleteItem(docId);
         const tmp = items.filter(item => item.docId !== docId)
         setItems([...tmp])
@@ -98,13 +102,15 @@ export default function AddItemInput() {
 
 
 
-    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem) {
-        const item = items.find(item => item.docId ===docId)
+    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem, titleCategory) {
+        const item = items.find(item => item.docId === docId)
         item.titleItem = titleItem;
         item.priceItem = priceItem;
+        item.titleCategory = titleCategory;
         item.descriptionItem = descriptionItem;
         await updateItem(docId, item);
     }
+
 
     return (
 
@@ -124,7 +130,7 @@ export default function AddItemInput() {
                         onChange={handleOnChange}
                     />
 
-{/*                     <input
+                    {/*                     <input
                         type="text" className="form-control"
                         placeholder="Escribe el nombre de tu platillo"
                         name="priceItem"
@@ -156,6 +162,8 @@ export default function AddItemInput() {
             <div className=" container">
                 {items.map(item => (
                     <Item
+                        ItemId={item.id}
+                        docIdCategory={docIdCategory}
                         key={item.docId}
                         docId={item.docId}
                         titleItem={item.titleItem}
@@ -164,7 +172,7 @@ export default function AddItemInput() {
                         photoItem={item.photoItem}
                         onUpdate={handleUpdateItem}
                         onDelete={handleDeleteItem}
-                        
+
                     />
                 ))}
 

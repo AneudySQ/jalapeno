@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { uuidv4 } from "@firebase/util";
 import 'firebase/compat/auth'
 import { getAuth, FacebookAuthProvider } from "firebase/auth";
 
@@ -76,7 +77,6 @@ export async function registerNewUser(user) {
 }
 
 export async function updateUser(user) {
-    console.log(user);
     try {
         const usersRef = collection(db, "users");
         await setDoc(doc(usersRef, user.uid), user);
@@ -96,10 +96,11 @@ export async function getUserInfo(uid) {
 
 /* Insertar Nueva categoria */
 
-export async function insertNewCategory(category,) {
+export async function insertNewCategory(category, uid) {
     try {
-        const docRef = collection(db, "Categories");
-        const res = await addDoc(docRef, category);
+        const docRef = collection(db, 'users', category.uid, "Restaurant", "Menu", "Categories");
+        const res = await setDoc(doc(docRef, category.id), category)
+
         return res;
     } catch (error) {
         console.error(error);
@@ -108,10 +109,11 @@ export async function insertNewCategory(category,) {
 
 
 /* Esta funcionn sube las categorias */
-export async function getCategories(uid) {
+export async function getCategories(uid,) {
     const Categories = [];
+
     try {
-        const collectionRef = collection(db, "Categories");
+        const collectionRef = collection(db, "users", uid, "Restaurant", "Menu", "Categories",);
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -152,8 +154,7 @@ export async function deleteCategory(docId) {
 
 export async function setUserProfilePicture(uid, file) {
     try {
-        const imageRef = ref(storage, `images/${uid}`);
-
+        const imageRef = ref(storage, `images/profilePicture/${uid}`);
         const resUpload = await uploadBytes(imageRef, file)
         return resUpload;
     } catch (error) {
@@ -189,8 +190,12 @@ export async function logout() {
 
 export async function insertNewItem(Item) {
     try {
-        const docRef = collection(db, "Prueba");
-        const res = await addDoc(docRef, Item);
+        const docRef = doc(collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.docIdCategory, "Items"));
+        const res = setDoc(docRef, Item)
+        //const res = await setDoc(doc(db, "users", Item.titleItem), { Item })
+
+        // const usersRef = collection(db, "users");
+        // setDoc(doc(usersRef, user.uid), user);
 
         return res;
     } catch (error) {
@@ -199,10 +204,11 @@ export async function insertNewItem(Item) {
 }
 
 /* Esta funcionn sube las Items */
-export async function getItems(uid) {
+export async function getItems(uid, docIdCategory) {
+
     const Items = [];
     try {
-        const collectionRef = collection(db, "Prueba");
+        const collectionRef = collection(db, 'users', uid, "Restaurant", "Menu", "Categories", docIdCategory, "Items");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -220,7 +226,7 @@ export async function getItems(uid) {
     }
 }
 
-export async function updateItem(docId, item) {
+export async function updateItem(docId, item,) {
     try {
         const docRef = doc(db, 'Prueba', docId)
         const res = await setDoc(docRef, item)
@@ -244,25 +250,25 @@ export async function deleteItem(docId) {
 
 
 /* Funcion para subior fotos */
-export async function setPhotoItem(uid, file) {
+export async function setPhotoItem( uid, file, ItemId) {
     try {
-        const imageRef = ref(storage, `images/ItemsPicture/${uid}`)
+        const imageRef = ref(storage, `images/ItemsPicture/${uuidv4() }`)
         const resUpload = await uploadBytes(imageRef, file);
         return resUpload;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
 
 }
 
 export async function getPhotoItem(photoItem) {
     try {
-        const imageRef = ref(storage,  photoItem);
+        const imageRef = ref(storage, photoItem);
         const url = await getDownloadURL(imageRef);
         return url;
 
     } catch (error) {
         console.error(error)
-     }
+    }
 }
 

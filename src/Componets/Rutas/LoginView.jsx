@@ -1,6 +1,5 @@
 import {
   GoogleAuthProvider,
-  onAuthStateChanged,
   signInWithPopup
 } from "firebase/auth";
 import { auth, userExists,  } from "../../Firebase/Firebase";

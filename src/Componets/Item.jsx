@@ -1,17 +1,17 @@
 import { useState, useRef, useEffect } from "react"
 import PhotoImten from "./PhotoImten"
-export default function Item({ docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
+export default function Item({ ItemId, docIdCategory, docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
     const [currentNameItem, setCurrentNameItem] = useState(titleItem)
     const [currentpriceItem, setCurrentPriceItem] = useState(priceItem)
     const [currentdescriptionItem, setCurrentDescriptionItem] = useState(descriptionItem)
-    const [currentphotoItem, setCurrentPhotoItem] = useState(photoItem)
+    //const [currentphotoItem, setCurrentPhotoItem] = useState(photoItem)
 
     const [editnameItem, setEditNameItem] = useState(false)
     const [editpriceItem, setEditPriceItem] = useState(false)
     const [editdescriptionItem, setEditDescriptionItem] = useState(false)
     //const [editphotoItem, setEditPhotoItem] = useState(false)
 
-    const [imgItem, setImgItem] = useState(null)
+    // const [imgItem, setImgItem] = useState(null)
 
 
     const NameItemRef = useRef(null);
@@ -69,15 +69,15 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
     function handlerBlurPriceitem(e) {
         setEditPriceItem(false)
         onUpdate(docId,
+            currentpriceItem,
             currentNameItem,
-            currentdescriptionItem,
-            currentpriceItem);
+            currentdescriptionItem);
     }
     function handlerBlurDescriptionitem(e) {
         setEditDescriptionItem(false)
         onUpdate(docId,
-            currentNameItem,
             currentdescriptionItem,
+            currentNameItem,
             currentpriceItem);
     }
 
@@ -103,7 +103,9 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
             <div className="strip_menu_items">
                 <div className="row">
                     <div className="col-md-3">
-                        <PhotoImten />
+                        <PhotoImten
+                            ItemId={ItemId}
+                        />
                     </div>
                     <div className="col-md-9">
                         <div className="row">
@@ -159,8 +161,8 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
                                                     onChange={handleChangePriceItem}
                                                     onBlur={handlerBlurPriceitem}
                                                     ref={PriceItemRef}
-                                                    type="text"
-                                                    name="menu_item_title_price"
+                                                    type="number"
+                                                    name="priceItem"
                                                     className="form-control" />
                                             </>
                                         ) : (
@@ -215,7 +217,6 @@ export default function Item({ docId, titleItem, priceItem, descriptionItem, pho
                                             {currentdescriptionItem}
                                         </div>
                                     </div>
-
                                 </>)}
                         </div>
                     </div>
