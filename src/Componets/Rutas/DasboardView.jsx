@@ -18,10 +18,10 @@ export default function DasboardView() {
 
 
   /* Estas son las validaciones dl formulario */
-  async function handleUserLoggedIn(user, ) {
+  async function handleUserLoggedIn(user,) {
     setCurrentUser(user);
     setState(2);
-    const resCategories = await getCategories(user.uid, );
+    const resCategories = await getCategories(user.uid,);
     setCategories([...resCategories]);
   }
   function handleonUserNotRegistered(user) {
@@ -66,12 +66,12 @@ export default function DasboardView() {
         uid: currentUser.uid,
         username: currentUser.username,
       };
-      const res = insertNewCategory(newCategory);
+      const res = insertNewCategory(newCategory,);
       newCategory.docId = res.id;
       setTitle('');
       setOrder('');
       setDescription('');
-      setCategories([...categories, newCategory, ]);
+      setCategories([...categories, newCategory,]);
     }
   }
 
@@ -89,7 +89,7 @@ export default function DasboardView() {
   }
 
   /* Funcion para actualizar las Categorias */
-  async function handlerUpdataCategory(docId, title, order, description) {
+  async function handlerUpdataCategory(docId, title, order, description,) {
     const category = categories.find(item => item.docId === docId);
     category.docId = docId;
     category.title = title;
@@ -147,8 +147,8 @@ export default function DasboardView() {
             <div >
               {categories.map((category) => (
                 <Category
+                  key={Category.id}
                   docIdCategory={category.id}
-                  key={category.docId}
                   docId={category.docId}
                   order={category.order}
                   title={category.title}

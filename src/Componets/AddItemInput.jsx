@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput({ docIdCategory }) {
+export default function AddItemInput({ docId, docIdCategory }) {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -102,11 +102,10 @@ export default function AddItemInput({ docIdCategory }) {
 
 
 
-    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem, titleCategory) {
+    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem, ) {
         const item = items.find(item => item.docId === docId)
         item.titleItem = titleItem;
         item.priceItem = priceItem;
-        item.titleCategory = titleCategory;
         item.descriptionItem = descriptionItem;
         await updateItem(docId, item);
     }
