@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput({ docId, docIdCategory }) {
+export default function AddItemInput({ docIdCategory }) {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -61,13 +61,13 @@ export default function AddItemInput({ docId, docIdCategory }) {
     function addItems() {
         if (titleItem !== '') {
             const newItem = {
-                docIdCategory: docIdCategory,
                 id: uuidv4(),
                 uid: currentUser.uid,
                 titleItem: titleItem,
                 priceItem: priceItem,
                 photoItem: photoItem,
                 descriptionItem: descriptionItem,
+                docIdCategory: docIdCategory,
             };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
@@ -94,20 +94,20 @@ export default function AddItemInput({ docId, docIdCategory }) {
             setPhotoItem(value);
         }
     }
-    async function handleDeleteItem(docId) {
-        await deleteItem(docId);
+    async function handleDeleteItem(docId, docIdCategory) {
+        await deleteItem(docId, docIdCategory);
         const tmp = items.filter(item => item.docId !== docId)
         setItems([...tmp])
     }
 
 
 
-    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem, ) {
+    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem,  ) {
         const item = items.find(item => item.docId === docId)
         item.titleItem = titleItem;
         item.priceItem = priceItem;
         item.descriptionItem = descriptionItem;
-        await updateItem(docId, item);
+        await updateItem(docId, item, docIdCategory);
     }
 
 
@@ -161,7 +161,6 @@ export default function AddItemInput({ docId, docIdCategory }) {
             <div className=" container">
                 {items.map(item => (
                     <Item
-                        ItemId={item.id}
                         docIdCategory={docIdCategory}
                         key={item.docId}
                         docId={item.docId}
