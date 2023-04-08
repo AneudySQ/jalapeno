@@ -24,7 +24,7 @@ export default function AddItemInput({ docIdCategory }) {
     async function handleUserLoggedIn(user) {
         setCurrentUser(user);
         setState(2);
-        const resItems = await getItems(user.uid, docIdCategory);
+        const resItems = await getItems(user.uid,);
         setItems([...resItems]);
 
     }

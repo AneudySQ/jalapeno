@@ -1,7 +1,7 @@
 import AddItemInput from './AddItemInput';
 import { useState, useRef, useEffect } from "react";
 
-export default function Category({ docId, order, title, description, onDelete, onUpdata, handleUserLoggedIn, }) {
+export default function Category({ docIdCategory, docId, order, title, description, onDelete, onUpdata, handleUserLoggedIn, }) {
     const [currentOrder, setCurrenteOrder] = useState(order);
     const [currentTitle, setCurrentTitle] = useState(title);
     const [currentDescription, setCurrenteDescription] = useState(description);
@@ -48,7 +48,7 @@ export default function Category({ docId, order, title, description, onDelete, o
 
     function handleDelete() {
         onDelete(docId)
-        alert("Quieres eliminar esta categoria?")
+
     }
 
 
@@ -112,8 +112,7 @@ export default function Category({ docId, order, title, description, onDelete, o
                 )}
             </div>
             <AddItemInput
-                docId={docId}
-                docIdCategory={`${title}`}
+                docIdCategory={docIdCategory}
                 handleUserLoggedIn={handleUserLoggedIn}
             />
         </div>

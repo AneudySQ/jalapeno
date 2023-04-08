@@ -90,19 +90,21 @@ export default function DasboardView() {
 
   /* Funcion para actualizar las Categorias */
   async function handlerUpdataCategory(docId, title, order, description,) {
-    const category = categories.find(item => item.docId === docId);
+    const category = categories.find((item) => item.docId === docId);
     category.docId = docId;
     category.title = title;
     category.order = order;
     category.description = description;
-    await updateCategory(docId, category,);
+    await updateCategory(docId, category);
   }
 
   /* Funcion para eliminar */
   async function handlerDeleteCategory(docId) {
-    await deleteCategory(docId);
-    const tmp = categories.filter(category => category.docId !== docId);
+    const category =  categories.find((item) => item.docId === docId);
+    await deleteCategory(docId, category);
+    const tmp = categories.filter((category) => category.docId !== docId);
     setCategories([...tmp]);
+    
   }
 
   return (
@@ -147,7 +149,7 @@ export default function DasboardView() {
             <div >
               {categories.map((category) => (
                 <Category
-                  key={Category.id}
+                  key={category.id}
                   docIdCategory={category.id}
                   docId={category.docId}
                   order={category.order}
