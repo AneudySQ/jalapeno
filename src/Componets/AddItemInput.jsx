@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput({ docIdCategory }) {
+export default function AddItemInput() {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -67,7 +67,6 @@ export default function AddItemInput({ docIdCategory }) {
                 priceItem: priceItem,
                 photoItem: photoItem,
                 descriptionItem: descriptionItem,
-                docIdCategory: docIdCategory,
             };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
@@ -94,8 +93,8 @@ export default function AddItemInput({ docIdCategory }) {
             setPhotoItem(value);
         }
     }
-    async function handleDeleteItem(docId, docIdCategory) {
-        await deleteItem(docId, docIdCategory);
+    async function handleDeleteItem(docId, ) {
+        await deleteItem(docId, );
         const tmp = items.filter(item => item.docId !== docId)
         setItems([...tmp])
     }
@@ -107,7 +106,7 @@ export default function AddItemInput({ docIdCategory }) {
         item.titleItem = titleItem;
         item.priceItem = priceItem;
         item.descriptionItem = descriptionItem;
-        await updateItem(docId, item, docIdCategory);
+        await updateItem(docId, item, );
     }
 
 
@@ -161,8 +160,7 @@ export default function AddItemInput({ docIdCategory }) {
             <div className=" container">
                 {items.map(item => (
                     <Item
-                        docIdCategory={docIdCategory}
-                        key={item.docId}
+                        key={item.id}
                         docId={item.docId}
                         titleItem={item.titleItem}
                         priceItem={item.priceItem}

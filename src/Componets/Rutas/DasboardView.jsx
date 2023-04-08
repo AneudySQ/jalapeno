@@ -65,6 +65,8 @@ export default function DasboardView() {
         description: description,
         uid: currentUser.uid,
         username: currentUser.username,
+
+        
       };
       const res = insertNewCategory(newCategory,);
       newCategory.docId = res.id;
@@ -100,11 +102,11 @@ export default function DasboardView() {
 
   /* Funcion para eliminar */
   async function handlerDeleteCategory(docId) {
-    const category =  categories.find((item) => item.docId === docId);
+    const category = categories.find((item) => item.docId === docId);
     await deleteCategory(docId, category);
     const tmp = categories.filter((category) => category.docId !== docId);
     setCategories([...tmp]);
-    
+
   }
 
   return (
@@ -145,12 +147,10 @@ export default function DasboardView() {
 
             </form>
 
-
             <div >
               {categories.map((category) => (
                 <Category
                   key={category.id}
-                  docIdCategory={category.id}
                   docId={category.docId}
                   order={category.order}
                   title={category.title}

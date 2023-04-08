@@ -87,7 +87,7 @@ export default function Item({  docId, titleItem, priceItem, descriptionItem, ph
 
 
     return (
-        <div key={docId}>
+        <div key={Item.id}>
             <div className="menu-item-section clearfix">
                 <h4>{currentNameItem}</h4>
                 <div>

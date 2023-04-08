@@ -192,9 +192,9 @@ export async function logout() {
 
 /* Funciones para insertar nuevo Items dentro de la coleccion  Categories */
 
-export async function insertNewItem(Item,) {
+export async function insertNewItem(Item, ) {
     try {
-        const docRef = collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.docIdCategory, "Item");
+        const docRef = collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item");
         const res = await addDoc(docRef, Item)
         // const usersRef = collection(db, "users");
         //const docRef = await addDoc(collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.DocIdCategory, "item"),{Item});
@@ -208,11 +208,11 @@ export async function insertNewItem(Item,) {
 }
 
 /* Esta funcionn sube las Items */
-export async function getItems(uid, docIdCategory) {
+export async function getItems(uid,  ) {
 
     const Items = [];
     try {
-        const collectionRef = collection(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item");
+        const collectionRef = collection(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory",  "Item");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
 
@@ -230,9 +230,9 @@ export async function getItems(uid, docIdCategory) {
     }
 }
 
-export async function updateItem(docId, item, uid, docIdCategory) {
+export async function updateItem(docId, item, uid) {
     try {
-        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", docIdCategory, "Item", docId)
+        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item", docId)
         const res = await setDoc(docRef, item)
         return res;
     } catch (error) {
@@ -242,9 +242,9 @@ export async function updateItem(docId, item, uid, docIdCategory) {
 
 }
 
-export async function deleteItem(docId, uid, docIdCategory,) {
+export async function deleteItem(docId, uid,) {
     try {
-        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", docIdCategory, "Item",);
+        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item",);
         const res = await deleteDoc(doc(db, docRef, docId));
         return res;
     } catch (error) {
