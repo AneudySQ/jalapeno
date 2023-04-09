@@ -192,9 +192,9 @@ export async function logout() {
 
 /* Funciones para insertar nuevo Items dentro de la coleccion  Categories */
 
-export async function insertNewItem(Item, ) {
+export async function insertNewItem(Item ) {
     try {
-        const docRef = collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item");
+        const docRef = collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.docIdCategory, "Item");
         const res = await addDoc(docRef, Item)
         // const usersRef = collection(db, "users");
         //const docRef = await addDoc(collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.DocIdCategory, "item"),{Item});
@@ -264,8 +264,6 @@ export async function setPhotoItem(uid, file, ItemId, username) {
     }
 
 }
-
-
 
 
 

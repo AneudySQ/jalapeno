@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput() {
+export default function AddItemInput({ docIdCategory }) {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -67,6 +67,7 @@ export default function AddItemInput() {
                 priceItem: priceItem,
                 photoItem: photoItem,
                 descriptionItem: descriptionItem,
+                docIdCategory: docIdCategory
             };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
