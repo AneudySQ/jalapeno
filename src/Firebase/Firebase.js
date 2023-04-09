@@ -146,7 +146,7 @@ export async function updateCategory(docId, category, uid) {
     }
 }
 
-export async function deleteCategory(docId, category ) {
+export async function deleteCategory(docId, category) {
     try {
         const docRef = doc(db, "users", category.uid, "Restaurant", "Menu", "Categories", docId);
         const res = await deleteDoc(docRef)
@@ -175,7 +175,7 @@ export async function getProfilePhotoUrl(profilePicture) {
         console.error(error);
     }
 }
-
+/* Esta Funcion publica las informaciones en el perfil publico */
 export async function getUserPublicProfileInfo(uid) {
     const profileInfo = await getUserInfo(uid);
     const categoriesInfo = await getCategories(uid)
@@ -192,7 +192,7 @@ export async function logout() {
 
 /* Funciones para insertar nuevo Items dentro de la coleccion  Categories */
 
-export async function insertNewItem(Item ) {
+export async function insertNewItem(Item) {
     try {
         const docRef = collection(db, 'users', Item.uid, "Restaurant", "Menu", "Categories", Item.docIdCategory, "Item");
         const res = await addDoc(docRef, Item)
@@ -208,33 +208,30 @@ export async function insertNewItem(Item ) {
 }
 
 /* Esta funcionn sube las Items */
-export async function getItems(uid,  ) {
+export async function getItems(uid, docIdCategory, Item) {
 
     const Items = [];
     try {
-        const collectionRef = collection(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory",  "Item");
+        const collectionRef = collection(db, 'users', uid, "Restaurant", "Menu", "Categories", docIdCategory, "Item");
         const q = query(collectionRef, where('uid', '==', uid));
         const querySnapshot = await getDocs(q);
-
         querySnapshot.forEach(doc => {
             const Item = { ...doc.data() };
             Item.docId = doc.id;
             Items.push(Item);
         });
-
         return Items;
-
     } catch (error) {
         console.error(error);
-
     }
 }
 
-export async function updateItem(docId, item, uid) {
+export async function updateItem(docId, item, uid, docIdCategory) {
     try {
-        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", "docIdCategory", "Item", docId)
+        const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", item.docIdCategory, "Item", docId)
         const res = await setDoc(docRef, item)
         return res;
+
     } catch (error) {
 
         console.error(error);

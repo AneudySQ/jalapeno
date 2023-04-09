@@ -21,10 +21,10 @@ export default function AddItemInput({ docIdCategory }) {
 
 
     /* Estas son las validaciones dl formulario */
-    async function handleUserLoggedIn(user) {
+    async function handleUserLoggedIn(user,) {
         setCurrentUser(user);
         setState(2);
-        const resItems = await getItems(user.uid,);
+        const resItems = await getItems(user.uid, docIdCategory);
         setItems([...resItems]);
 
     }
@@ -103,11 +103,11 @@ export default function AddItemInput({ docIdCategory }) {
 
 
     async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem,  ) {
-        const item = items.find(item => item.docId === docId)
-        item.titleItem = titleItem;
-        item.priceItem = priceItem;
-        item.descriptionItem = descriptionItem;
-        await updateItem(docId, item, );
+        const Item = items.find(Item => Item.docId === docId)
+        Item.titleItem = titleItem;
+        Item.priceItem = priceItem;
+        Item.descriptionItem = descriptionItem;
+        await updateItem(docId, Item, docIdCategory  );
     }
 
 
