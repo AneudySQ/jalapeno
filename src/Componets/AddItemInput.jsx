@@ -19,6 +19,7 @@ export default function AddItemInput({ docIdCategory }) {
 
 
 
+  
 
     /* Estas son las validaciones dl formulario */
     async function handleUserLoggedIn(user,) {
@@ -103,11 +104,11 @@ export default function AddItemInput({ docIdCategory }) {
 
 
     async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem,  ) {
-        const Item = items.find(Item => Item.docId === docId)
+        const Item = items.find((item)=> item.docId === docId)
         Item.titleItem = titleItem;
         Item.priceItem = priceItem;
         Item.descriptionItem = descriptionItem;
-        await updateItem(docId, Item, docIdCategory  );
+        await updateItem(docId, Item, docIdCategory);
     }
 
 

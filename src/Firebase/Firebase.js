@@ -226,14 +226,16 @@ export async function getItems(uid, docIdCategory, Item) {
     }
 }
 
-export async function updateItem(docId, item, uid, docIdCategory) {
+/* Esta funcion actualiza los ITems */
+
+export async function updateItem(docId, item, uid, ) {
     try {
         const docRef = doc(db, 'users', uid, "Restaurant", "Menu", "Categories", item.docIdCategory, "Item", docId)
         const res = await setDoc(docRef, item)
         return res;
 
     } catch (error) {
-
+        console.log("error")
         console.error(error);
     }
 
