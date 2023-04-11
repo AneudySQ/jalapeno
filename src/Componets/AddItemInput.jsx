@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { insertNewItem, getItems, updateItem, deleteItem } from "../Firebase/Firebase";
 import Item from "../Componets/Item"
 
-export default function AddItemInput({ docId, docIdCategory }) {
+export default function AddItemInput({ docIdCategory }) {
     const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState({});
     const [state, setState] = useState(0);
@@ -19,9 +19,10 @@ export default function AddItemInput({ docId, docIdCategory }) {
 
 
 
+  
 
     /* Estas son las validaciones dl formulario */
-    async function handleUserLoggedIn(user) {
+    async function handleUserLoggedIn(user,) {
         setCurrentUser(user);
         setState(2);
         const resItems = await getItems(user.uid, docIdCategory);
@@ -61,13 +62,13 @@ export default function AddItemInput({ docId, docIdCategory }) {
     function addItems() {
         if (titleItem !== '') {
             const newItem = {
-                docIdCategory: docIdCategory,
                 id: uuidv4(),
                 uid: currentUser.uid,
                 titleItem: titleItem,
                 priceItem: priceItem,
                 photoItem: photoItem,
                 descriptionItem: descriptionItem,
+                docIdCategory: docIdCategory
             };
             const res = insertNewItem(newItem);
             newItem.docId = res.id;
@@ -94,20 +95,20 @@ export default function AddItemInput({ docId, docIdCategory }) {
             setPhotoItem(value);
         }
     }
-    async function handleDeleteItem(docId) {
-        await deleteItem(docId);
+    async function handleDeleteItem(docId, ) {
+        await deleteItem(docId, );
         const tmp = items.filter(item => item.docId !== docId)
         setItems([...tmp])
     }
 
 
 
-    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem, ) {
-        const item = items.find(item => item.docId === docId)
-        item.titleItem = titleItem;
-        item.priceItem = priceItem;
-        item.descriptionItem = descriptionItem;
-        await updateItem(docId, item);
+    async function handleUpdateItem(docId, titleItem, priceItem, descriptionItem,  ) {
+        const Item = items.find((item)=> item.docId === docId)
+        Item.titleItem = titleItem;
+        Item.priceItem = priceItem;
+        Item.descriptionItem = descriptionItem;
+        await updateItem(docId, Item, docIdCategory);
     }
 
 
@@ -161,9 +162,7 @@ export default function AddItemInput({ docId, docIdCategory }) {
             <div className=" container">
                 {items.map(item => (
                     <Item
-                        ItemId={item.id}
-                        docIdCategory={docIdCategory}
-                        key={item.docId}
+                        key={item.id}
                         docId={item.docId}
                         titleItem={item.titleItem}
                         priceItem={item.priceItem}

@@ -48,7 +48,7 @@ export default function Category({ docId, order, title, description, onDelete, o
 
     function handleDelete() {
         onDelete(docId)
-        alert("Quieres eliminar esta categoria?")
+
     }
 
 
@@ -112,8 +112,7 @@ export default function Category({ docId, order, title, description, onDelete, o
                 )}
             </div>
             <AddItemInput
-                docId={docId}
-                docIdCategory={`${title}`}
+                docIdCategory={docId}
                 handleUserLoggedIn={handleUserLoggedIn}
             />
         </div>

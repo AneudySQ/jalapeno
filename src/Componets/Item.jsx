@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react"
-import PhotoImten from "./PhotoImten"
-export default function Item({ ItemId, docIdCategory, docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
+export default function Item({  docId, titleItem, priceItem, descriptionItem, photoItem, onDelete, onUpdate }) {
     const [currentNameItem, setCurrentNameItem] = useState(titleItem)
     const [currentpriceItem, setCurrentPriceItem] = useState(priceItem)
     const [currentdescriptionItem, setCurrentDescriptionItem] = useState(descriptionItem)
@@ -88,7 +87,7 @@ export default function Item({ ItemId, docIdCategory, docId, titleItem, priceIte
 
 
     return (
-        <div key={docId}>
+        <div key={Item.id}>
             <div className="menu-item-section clearfix">
                 <h4>{currentNameItem}</h4>
                 <div>
